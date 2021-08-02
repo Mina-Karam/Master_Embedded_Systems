@@ -25,7 +25,7 @@ int main()
     if (num2 >= num1 && num2 >= num3)
         printf("%.2f is the largest number.", num2);
 
-    // if num3 is greater than both num1 and num2, num3 is the largest
+    // if num3 is greater than both num1 and num2, num3 is the largest  
     if (num3 >= num1 && num3 >= num2)
         printf("%.2f is the largest number.", num3);
 
