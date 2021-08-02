@@ -1,3 +1,5 @@
-Assignment_1_C_Basics
+Assignment 1
 
-Mina Karam
+C-Basic
+
+How To use ( Data Type , Printf , Scanf and Operators )
