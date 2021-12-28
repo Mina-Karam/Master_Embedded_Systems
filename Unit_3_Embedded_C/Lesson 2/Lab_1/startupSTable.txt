@@ -1,0 +1,4 @@
+         U main
+00000000 T reset
+         U stack_top
+00000008 t stop

@@ -1,0 +1,88 @@
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+Mem              0x00000000         0x04000000         xrw
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+                0x00010000                . = 0x10000
+
+.startup        0x00010000       0x10
+ startup.o(.text)
+ .text          0x00010000       0x10 startup.o
+                0x00010000                reset
+
+.text           0x00010010       0xb4
+ *(.text)
+ .text          0x00010010       0x10 ./startup.o
+ .text          0x00010020       0x18 ./app.o
+                0x00010020                main
+ .text          0x00010038       0x58 ./uart.o
+                0x00010038                Uart_Send_String
+ *(.rodata)
+ .rodata        0x00010090       0x34 ./app.o
+                0x00010090                String_Buffer_C
+
+.glue_7         0x000100c4        0x0
+ .glue_7        0x000100c4        0x0 linker stubs
+
+.glue_7t        0x000100c4        0x0
+ .glue_7t       0x000100c4        0x0 linker stubs
+
+.vfp11_veneer   0x000100c4        0x0
+ .vfp11_veneer  0x000100c4        0x0 linker stubs
+
+.v4_bx          0x000100c4        0x0
+ .v4_bx         0x000100c4        0x0 linker stubs
+
+.iplt           0x000100c4        0x0
+ .iplt          0x000100c4        0x0 startup.o
+
+.rel.dyn        0x000100c4        0x0
+ .rel.iplt      0x000100c4        0x0 startup.o
+
+.data           0x000100c4       0x34
+ *(.data)
+ .data          0x000100c4        0x0 startup.o
+ .data          0x000100c4        0x0 ./startup.o
+ .data          0x000100c4       0x34 ./app.o
+                0x000100c4                String_Buffer
+ .data          0x000100f8        0x0 ./uart.o
+
+.igot.plt       0x000100f8        0x0
+ .igot.plt      0x000100f8        0x0 startup.o
+
+.bss            0x000100f8        0x0
+ *(.bss)
+ .bss           0x000100f8        0x0 startup.o
+ .bss           0x000100f8        0x0 ./startup.o
+ .bss           0x000100f8        0x0 ./app.o
+ .bss           0x000100f8        0x0 ./uart.o
+ *(COMMAN)
+                0x000110f8                . = (. + 0x1000)
+                0x000110f8                stack_top = .
+LOAD ./startup.o
+LOAD ./app.o
+LOAD ./uart.o
+OUTPUT(./Mina.elf elf32-littlearm)
+LOAD linker stubs
+LOAD startup.o
+
+.ARM.attributes
+                0x00000000       0x2e
+ .ARM.attributes
+                0x00000000       0x22 startup.o
+ .ARM.attributes
+                0x00000022       0x22 ./startup.o
+ .ARM.attributes
+                0x00000044       0x32 ./app.o
+ .ARM.attributes
+                0x00000076       0x2c ./uart.o
+
+.comment        0x00000000       0x5a
+ .comment       0x00000000       0x11 ./app.o
+                                 0x12 (size before relaxing)
+ .comment       0x00000011       0x49 ./uart.o
+                                 0x4a (size before relaxing)
