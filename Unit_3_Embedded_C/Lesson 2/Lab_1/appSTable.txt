@@ -1,4 +1,0 @@
-00000000 T main
-00000000 D String_Buffer
-00000000 R String_Buffer_C
-         U Uart_Send_String

@@ -27,5 +27,5 @@ SECTIONS
 		*(.bss)	*(COMMAN)
 	}>Mem
 	. = . + 0x1000; /* 4KB of Stack Memory */
-	stack_top = . ;
+	stack_top = . ; /*set stack pointer at top*/
 }

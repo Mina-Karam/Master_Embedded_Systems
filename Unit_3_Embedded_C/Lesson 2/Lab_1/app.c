@@ -7,4 +7,5 @@ uint8_t const String_Buffer_C[50] = "Learn-in-depth: Mina";
 void main(void)
 {
 	Uart_Send_String(String_Buffer);
+	while(1);
 }
