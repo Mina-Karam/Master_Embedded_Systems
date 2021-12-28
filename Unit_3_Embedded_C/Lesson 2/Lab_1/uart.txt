@@ -1,0 +1,27 @@
+
+./uart.o:     file format elf32-littlearm
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00000058  00000000  00000000  00000034  2**2
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000000  00000000  00000000  0000008c  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000000  00000000  00000000  0000008c  2**0
+                  ALLOC
+  3 .debug_info   000000cf  00000000  00000000  0000008c  2**0
+                  CONTENTS, RELOC, READONLY, DEBUGGING, OCTETS
+  4 .debug_abbrev 00000076  00000000  00000000  0000015b  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+  5 .debug_aranges 00000020  00000000  00000000  000001d1  2**0
+                  CONTENTS, RELOC, READONLY, DEBUGGING, OCTETS
+  6 .debug_line   00000068  00000000  00000000  000001f1  2**0
+                  CONTENTS, RELOC, READONLY, DEBUGGING, OCTETS
+  7 .debug_str    0000017a  00000000  00000000  00000259  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+  8 .comment      0000004a  00000000  00000000  000003d3  2**0
+                  CONTENTS, READONLY
+  9 .debug_frame  00000030  00000000  00000000  00000420  2**2
+                  CONTENTS, RELOC, READONLY, DEBUGGING, OCTETS
+ 10 .ARM.attributes 0000002c  00000000  00000000  00000450  2**0
+                  CONTENTS, READONLY
