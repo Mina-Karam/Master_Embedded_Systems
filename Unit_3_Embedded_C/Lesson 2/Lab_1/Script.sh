@@ -22,7 +22,7 @@ arm-none-eabi-nm.exe uart.o > uartSTable.txt
 arm-none-eabi-nm.exe startup.o > startupSTable.txt
 
 #link and produce the map file
-arm-none-eabi-ld.exe -T -Map=Map_file.map Linker_Script.ld startup.o app.o uart.o -o Mina.elf
+arm-none-eabi-ld.exe -T -Map=map_file.map Linker_Script.ld startup.o app.o uart.o -o Mina.elf
 
 #convert elf to bin file
 arm-none-eabi-objcopy.exe -O binary Mina.elf Mina.bin
