@@ -1,9 +1,9 @@
-# 1 "./app.c"
+# 1 "app.c"
 # 1 "<built-in>"
 # 1 "<command-line>"
-# 1 "./app.c"
-# 1 "./Platform_Types.h" 1
-# 17 "./Platform_Types.h"
+# 1 "app.c"
+# 1 "Platform_Types.h" 1
+# 17 "Platform_Types.h"
 typedef _Bool boolean;
 typedef char char_t;
 typedef signed char sint8_t;
@@ -27,20 +27,19 @@ typedef volatile unsigned long long int vuint64_t;
 
 typedef float float32;
 typedef double float64;
-# 2 "./app.c" 2
-# 1 "./uart.h" 1
+# 2 "app.c" 2
+# 1 "uart.h" 1
 
 
 
 
 void Uart_Send_String(uint8_t* P_TX_Sting);
-# 3 "./app.c" 2
+# 3 "app.c" 2
 
-uint8_t String_Buffer[50] = "Learn-in-depth: Mina";
-uint8_t const String_Buffer_C[50] = "Learn-in-depth: Mina";
+uint8_t String_Buffer[100] = "Learn-in-depth: Mina";
+
 
 void main(void)
 {
  Uart_Send_String(String_Buffer);
- while(1);
 }

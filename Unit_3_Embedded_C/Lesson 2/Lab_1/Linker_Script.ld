@@ -1,3 +1,5 @@
+ENTRY(reset)
+
 /* List of our memory sections */
 MEMORY
 {

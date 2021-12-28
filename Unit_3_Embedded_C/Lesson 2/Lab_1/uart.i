@@ -1,9 +1,9 @@
-# 1 "./uart.c"
+# 1 "uart.c"
 # 1 "<built-in>"
 # 1 "<command-line>"
-# 1 "./uart.c"
-# 1 "./Platform_Types.h" 1
-# 17 "./Platform_Types.h"
+# 1 "uart.c"
+# 1 "Platform_Types.h" 1
+# 17 "Platform_Types.h"
 typedef _Bool boolean;
 typedef char char_t;
 typedef signed char sint8_t;
@@ -27,14 +27,14 @@ typedef volatile unsigned long long int vuint64_t;
 
 typedef float float32;
 typedef double float64;
-# 2 "./uart.c" 2
-# 1 "./uart.h" 1
+# 2 "uart.c" 2
+# 1 "uart.h" 1
 
 
 
 
 void Uart_Send_String(uint8_t* P_TX_Sting);
-# 3 "./uart.c" 2
+# 3 "uart.c" 2
 
 
 
