@@ -37,19 +37,22 @@ typedef union {
 
 volatile R_ODR_t* R_ODR = (volatile R_ODR_t*)(GPIOA_BASE + 0x0C);
 
+#define RCC_IOPAEN	(1<<2)
+#define GPIOA_Pin13	(1UL<<13)
+
 int main(void)
 {
-	RCC_APB2ENR |= 1<<2; // Enable clock rcc
+	RCC_APB2ENR |= RCC_IOPAEN; // Enable clock rcc
 	GPIOA_CRH &= 0xff0fffff; // get them 0 first before change it
 	GPIOA_CRH |= 0x00200000; // now we can set 2 safely
 
 	while(1)
 	{
-//		GPIOA_ODR |= 1<<13 ; // Set port a pin 13
+//		GPIOA_ODR |= GPIOA_Pin13 ; // Set port a pin 13
 		R_ODR->pin.p_13 = 1;
 		for(int i = 0 ;i < 500 ; i++);
 
-//		GPIOA_ODR &= ~(1<<13) ; // Clear port a pin 13
+//		GPIOA_ODR &= ~(GPIOA_Pin13) ; // Clear port a pin 13
 		R_ODR->pin.p_13 = 0;
 		for(int i = 0 ;i < 500 ; i++);
 	}
