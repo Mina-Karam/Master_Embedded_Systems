@@ -1,0 +1,121 @@
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+flash            0x08000000         0x00020000         xr
+sram             0x20000000         0x00005000         xrw
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+
+.text           0x08000000      0x148
+ *(.vectors*)
+ .vectors       0x08000000       0x1c CortexM3_startup.o
+                0x08000000                vectors
+ *(.text*)
+ .text          0x0800001c       0x90 CortexM3_startup.o
+                0x0800001c                H_Fault_Handler
+                0x0800001c                Default_Hundler
+                0x0800001c                MM_Fault_Handler
+                0x0800001c                Usage_Fault_Handler
+                0x08000028                Reset_Hundler
+ .text          0x080000ac       0x90 main.o
+                0x080000ac                NMI_Handler
+                0x080000b8                Bus_Fault
+                0x080000c4                main
+ *(.rodata*)
+ .rodata        0x0800013c        0xc main.o
+                0x0800013c                const_variavles
+                0x08000148                _E_TEXT = .
+
+.glue_7         0x08000148        0x0
+ .glue_7        0x08000148        0x0 linker stubs
+
+.glue_7t        0x08000148        0x0
+ .glue_7t       0x08000148        0x0 linker stubs
+
+.vfp11_veneer   0x08000148        0x0
+ .vfp11_veneer  0x08000148        0x0 linker stubs
+
+.v4_bx          0x08000148        0x0
+ .v4_bx         0x08000148        0x0 linker stubs
+
+.iplt           0x08000148        0x0
+ .iplt          0x08000148        0x0 CortexM3_startup.o
+
+.rel.dyn        0x08000148        0x0
+ .rel.iplt      0x08000148        0x0 CortexM3_startup.o
+
+.data           0x20000000       0x10 load address 0x08000148
+                0x20000000                _S_DATA = .
+ *(.data*)
+ .data          0x20000000        0x0 CortexM3_startup.o
+ .data          0x20000000       0x10 main.o
+                0x20000000                R_ODR
+                0x20000004                global_variables
+                0x20000010                . = ALIGN (0x4)
+                0x20000010                _E_DATA = .
+
+.igot.plt       0x20000010        0x0 load address 0x08000158
+ .igot.plt      0x20000010        0x0 CortexM3_startup.o
+
+.bss            0x20000010     0x1000 load address 0x08000158
+                0x20000010                _S_BSS = .
+ *(.bss*)
+ .bss           0x20000010        0x0 CortexM3_startup.o
+ .bss           0x20000010        0x0 main.o
+                0x20000010                . = ALIGN (0x4)
+                0x20000010                _E_BSS = .
+                0x20000010                . = ALIGN (0x4)
+                0x20001010                . = (. + 0x1000)
+ *fill*         0x20000010     0x1000 
+                0x20001010                _STACK_TOP = .
+LOAD CortexM3_startup.o
+LOAD main.o
+OUTPUT(Embedded_C_Lesson_3_Lab_2.elf elf32-littlearm)
+LOAD linker stubs
+
+.debug_info     0x00000000      0x390
+ .debug_info    0x00000000      0x1af CortexM3_startup.o
+ .debug_info    0x000001af      0x1e1 main.o
+
+.debug_abbrev   0x00000000      0x209
+ .debug_abbrev  0x00000000       0xe4 CortexM3_startup.o
+ .debug_abbrev  0x000000e4      0x125 main.o
+
+.debug_loc      0x00000000      0x13c
+ .debug_loc     0x00000000       0x7c CortexM3_startup.o
+ .debug_loc     0x0000007c       0xc0 main.o
+
+.debug_aranges  0x00000000       0x40
+ .debug_aranges
+                0x00000000       0x20 CortexM3_startup.o
+ .debug_aranges
+                0x00000020       0x20 main.o
+
+.debug_line     0x00000000      0x162
+ .debug_line    0x00000000       0xd4 CortexM3_startup.o
+ .debug_line    0x000000d4       0x8e main.o
+
+.debug_str      0x00000000      0x239
+ .debug_str     0x00000000      0x1c5 CortexM3_startup.o
+                                0x1ec (size before relaxing)
+ .debug_str     0x000001c5       0x74 main.o
+                                0x1cf (size before relaxing)
+
+.comment        0x00000000       0x49
+ .comment       0x00000000       0x49 CortexM3_startup.o
+                                 0x4a (size before relaxing)
+ .comment       0x00000049       0x4a main.o
+
+.ARM.attributes
+                0x00000000       0x2d
+ .ARM.attributes
+                0x00000000       0x2d CortexM3_startup.o
+ .ARM.attributes
+                0x0000002d       0x2d main.o
+
+.debug_frame    0x00000000       0xbc
+ .debug_frame   0x00000000       0x50 CortexM3_startup.o
+ .debug_frame   0x00000050       0x6c main.o

@@ -1,0 +1,90 @@
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+flash            0x08000000         0x00020000         xr
+sram             0x20000000         0x00005000         xrw
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+
+.text           0x08000000       0x78
+ *(.vectors*)
+ *(.text*)
+ .text          0x08000000       0x78 main.o
+                0x08000000                main
+ *(.rodata*)
+                0x08000078                _E_TEXT = .
+
+.glue_7         0x08000078        0x0
+ .glue_7        0x08000078        0x0 linker stubs
+
+.glue_7t        0x08000078        0x0
+ .glue_7t       0x08000078        0x0 linker stubs
+
+.vfp11_veneer   0x08000078        0x0
+ .vfp11_veneer  0x08000078        0x0 linker stubs
+
+.v4_bx          0x08000078        0x0
+ .v4_bx         0x08000078        0x0 linker stubs
+
+.iplt           0x08000078        0x0
+ .iplt          0x08000078        0x0 main.o
+
+.rel.dyn        0x08000078        0x0
+ .rel.iplt      0x08000078        0x0 main.o
+
+.data           0x20000000        0x4 load address 0x08000078
+                0x20000000                _S_DATA = .
+ *(.data*)
+ .data          0x20000000        0x4 main.o
+                0x20000000                R_ODR
+                0x20000004                _E_DATA = .
+
+.igot.plt       0x20000004        0x0 load address 0x0800007c
+ .igot.plt      0x20000004        0x0 main.o
+
+.bss            0x20000004     0x1000 load address 0x0800007c
+                0x20000004                _S_BSS = .
+ *(.bss*)
+ .bss           0x20000004        0x0 main.o
+                0x20000004                _E_BSS = .
+                0x20001004                . = (. + 0x1000)
+ *fill*         0x20000004     0x1000 
+                0x20001004                _STACK_TOP = .
+LOAD main.o
+OUTPUT(Embedded_C_Lesson_3_Lab_2.elf elf32-littlearm)
+LOAD linker stubs
+
+.debug_info     0x00000000      0x153
+ .debug_info    0x00000000      0x153 main.o
+
+.debug_abbrev   0x00000000       0xf0
+ .debug_abbrev  0x00000000       0xf0 main.o
+
+.debug_loc      0x00000000       0x38
+ .debug_loc     0x00000000       0x38 main.o
+
+.debug_aranges  0x00000000       0x20
+ .debug_aranges
+                0x00000000       0x20 main.o
+
+.debug_line     0x00000000       0x8a
+ .debug_line    0x00000000       0x8a main.o
+
+.debug_str      0x00000000      0x160
+ .debug_str     0x00000000      0x160 main.o
+                                0x17e (size before relaxing)
+
+.comment        0x00000000       0x49
+ .comment       0x00000000       0x49 main.o
+                                 0x4a (size before relaxing)
+
+.ARM.attributes
+                0x00000000       0x2d
+ .ARM.attributes
+                0x00000000       0x2d main.o
+
+.debug_frame    0x00000000       0x2c
+ .debug_frame   0x00000000       0x2c main.o
