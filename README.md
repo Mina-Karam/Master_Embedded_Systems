@@ -6,11 +6,11 @@
 
 ## Contents
 
-### First Term ![image](https://progress-bar.dev/60/?title=Done)
+### First Term ![image](https://progress-bar.dev/60/?title=In_Progress)
 
 - Unit 1: Diploma Prerequisites ![image](https://progress-bar.dev/100/?title=No_Assignments&color=bababa)
-- [Unit 2: C Programming](02_C_Programming) ![image](https://progress-bar.dev/100/)
-- [Unit 3: Embedded C](03_Embedded_C) ![image](https://progress-bar.dev/70/)
+- [Unit 2: C Programming](Unit_2_C_Programming) ![image](https://progress-bar.dev/100/)
+- [Unit 3: Embedded C](Unit_3_Embedded_C) ![image](https://progress-bar.dev/70/)
 - [Unit 4: System Architect](04_System_Architect) ![image](https://progress-bar.dev/0/)
 - [Unit 5: First Term Projects](05_First_Term_Projects) ![image](https://progress-bar.dev/0/)
 
@@ -28,7 +28,7 @@
 
 ---
 
-## Overall progress ![image](https://progress-bar.dev/1/2/?scale=3&title=Terms&suffix=&width=230&color=aa00ff)
+## Overall progress ![image](https://progress-bar.dev/1/?scale=3&title=Terms&suffix=&width=230&color=aa00ff)
 
 ---
 
