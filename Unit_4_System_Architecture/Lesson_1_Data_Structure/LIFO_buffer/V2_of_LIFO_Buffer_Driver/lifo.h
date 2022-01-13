@@ -10,16 +10,16 @@
 #ifndef LIFO_H_
 #define LIFO_H_
 
-//Data type of buffer
-typedef unsigned char uint8_t ;
-typedef unsigned int  uint32_t ;
+#include "stdio.h"
+#include "stdint.h"
+#include "lifo_cfg.h"
 
 //Type Definition
 typedef struct {
 	uint32_t  length ;
 	uint32_t  count ;
-	uint32_t* base ;
-	uint32_t* head ;
+	element_type* base ;
+	element_type* head ;
 }LIFO_Buf_st;
 
 typedef enum {
@@ -34,16 +34,16 @@ typedef enum {
 //APIs
 
 //Initialize LIFO Given an array buffer and a buffer length
-LIFO_Status_st LIFO_init(LIFO_Buf_st *lifo_buf, uint32_t *item_buf, uint32_t buf_len);
+LIFO_Status_st LIFO_init(LIFO_Buf_st *lifo_buf, element_type *item_buf, uint32_t buf_len);
 
 //Push item in the LIFO given a data item
-LIFO_Status_st LIFO_push(LIFO_Buf_st *lifo_buf, uint32_t item);
+LIFO_Status_st LIFO_push(LIFO_Buf_st *lifo_buf, element_type item);
 
 //Pop item from the LIFO given the address of the item holder
-LIFO_Status_st LIFO_pop(LIFO_Buf_st *lifo_buf, uint32_t *item);
+LIFO_Status_st LIFO_pop(LIFO_Buf_st *lifo_buf, element_type *item);
 
 //Return the top of the LIFO without erasing it given item holder
-LIFO_Status_st LIFO_top(LIFO_Buf_st *lifo_buf, uint32_t *item);
+LIFO_Status_st LIFO_top(LIFO_Buf_st *lifo_buf, element_type *item);
 
 //Print the LIFO buffer content
 LIFO_Status_st LIFO_print(LIFO_Buf_st *lifo_buf);

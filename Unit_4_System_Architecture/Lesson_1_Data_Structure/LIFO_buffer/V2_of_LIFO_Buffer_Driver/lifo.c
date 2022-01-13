@@ -10,7 +10,7 @@
 #include "lifo.h"
 #include "stdio.h"
 
-LIFO_Status_st LIFO_init(LIFO_Buf_st *lifo_buf, uint32_t *item_buf, uint32_t buf_len)
+LIFO_Status_st LIFO_init(LIFO_Buf_st *lifo_buf, element_type *item_buf, uint32_t buf_len)
 {
 	//Check parameters validity
 	if(lifo_buf == NULL || item_buf == NULL || buf_len == 0 )
@@ -25,10 +25,12 @@ LIFO_Status_st LIFO_init(LIFO_Buf_st *lifo_buf, uint32_t *item_buf, uint32_t buf
 	lifo_buf->count = 0;
 
 	printf("LIFO initialization passed:\n\n");
+	printf("Element Type Configuration : element_type ");
+
 	return LIFO_NO_ERROR;
 }
 
-LIFO_Status_st LIFO_push(LIFO_Buf_st *lifo_buf, uint32_t item)
+LIFO_Status_st LIFO_push(LIFO_Buf_st *lifo_buf, element_type item)
 {
 	//Check parameters validity
 	if(lifo_buf == NULL || lifo_buf->base == NULL || lifo_buf->head == NULL )
@@ -51,7 +53,7 @@ LIFO_Status_st LIFO_push(LIFO_Buf_st *lifo_buf, uint32_t item)
 	return LIFO_NO_ERROR;
 }
 
-LIFO_Status_st LIFO_pop(LIFO_Buf_st *lifo_buf, uint32_t *item)
+LIFO_Status_st LIFO_pop(LIFO_Buf_st *lifo_buf, element_type *item)
 {
 	// Check parameters validity
 	if(lifo_buf == NULL || lifo_buf->base == NULL || lifo_buf->head == NULL || item == NULL)
@@ -74,7 +76,7 @@ LIFO_Status_st LIFO_pop(LIFO_Buf_st *lifo_buf, uint32_t *item)
 	return LIFO_NO_ERROR;
 }
 
-LIFO_Status_st LIFO_top(LIFO_Buf_st *lifo_buf, uint32_t *item)
+LIFO_Status_st LIFO_top(LIFO_Buf_st *lifo_buf, element_type *item)
 {
 	// Check parameters validity
 	if(lifo_buf == NULL || lifo_buf->base == NULL || lifo_buf->head == NULL || item == NULL)
@@ -98,7 +100,7 @@ LIFO_Status_st LIFO_top(LIFO_Buf_st *lifo_buf, uint32_t *item)
 
 LIFO_Status_st LIFO_print(LIFO_Buf_st *lifo_buf)
 {
-	uint32_t *item_ptr;
+	element_type *item_ptr;
 
 	// Check parameters validity
 	if(lifo_buf == NULL || lifo_buf->base == NULL || lifo_buf->head == NULL)

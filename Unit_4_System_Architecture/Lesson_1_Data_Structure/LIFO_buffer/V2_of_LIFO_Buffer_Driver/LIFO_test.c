@@ -1,5 +1,5 @@
 /*
- * LIFO_test.c
+ * lifo_test.c
  *
  * Created on : Jan 11, 2022
  *     Author : Mina Karam
@@ -26,9 +26,9 @@ int main(void)
 {
 	LIFO_Buf_st LIFO_test;
 
-	uint32_t test_buf[LIFO_buf_length];
+	element_type test_buf[LIFO_buf_length];
 
-	uint32_t i, temp, passed = 0, failed = 0;
+	element_type i, temp = 0, passed = 0, failed = 0;
 
 	//Initialization
 	printf("Testing Initialization:\n");
