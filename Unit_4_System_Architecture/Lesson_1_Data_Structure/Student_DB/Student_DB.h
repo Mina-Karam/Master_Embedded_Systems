@@ -50,6 +50,8 @@ void list_view_students(void);
 // Delete all students in the list
 void list_delete_all(void);
 
+// Get a Student node form the list
+void list_get_node(int index);
 
 
 #endif /* STUDENT_DB_H_ */

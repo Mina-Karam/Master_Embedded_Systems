@@ -29,7 +29,8 @@ int main(void)
 		DPRINTF("\n\t 2: Delete Student");
 		DPRINTF("\n\t 3: View Students");
 		DPRINTF("\n\t 4: Delete All");
-		DPRINTF("\n\t 5: Exit");
+		DPRINTF("\n\t 5: Get Node");
+		DPRINTF("\n\t 6: Exit");
 		DPRINTF("\n\n Enter option number: ");
 
 		gets(temp_text);
@@ -53,6 +54,13 @@ int main(void)
 				break;
 
 			case 5:
+				DPRINTF("Enter Node Number: ");
+				gets(temp_text);
+				int num = atoi(temp_text);
+				list_get_node(num);
+				break;
+
+			case 6:
 				return 0;
 			default:
 				DPRINTF("\n Wrong Option: Try Again ");

@@ -157,3 +157,31 @@ void list_delete_all(void)
 	}
 	gpFirstStudent = NULL;
 }
+
+// Get a Student node form the list
+void list_get_node(int index)
+{
+	// Check if the list is empty
+	if(gpFirstStudent == NULL || index < 0)
+	{
+		DPRINTF("\nThe List is Empty.\n");
+	}
+
+	struct SStudentNode *pTemp = gpFirstStudent;
+	unsigned int counter = 0;
+
+	// Check if the first recored is null
+	while(pTemp)
+	{
+		if(counter == index)
+		{
+			DPRINTF("\n Record Index %d",index);
+			DPRINTF("\n\t ID : %d",pTemp->Student.ID);
+			DPRINTF("\n\t Name : %s",pTemp->Student.Name);
+			DPRINTF("\n\t Height : %0.2f\n",pTemp->Student.height);
+		}
+		pTemp = pTemp->pNext;
+		counter++;
+	}
+}
+
