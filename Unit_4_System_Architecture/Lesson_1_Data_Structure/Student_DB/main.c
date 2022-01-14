@@ -29,6 +29,7 @@ int main(void)
 		DPRINTF("\n\t 2: Delete Student");
 		DPRINTF("\n\t 3: View Students");
 		DPRINTF("\n\t 4: Delete All");
+		DPRINTF("\n\t 5: Exit");
 		DPRINTF("\n\n Enter option number: ");
 
 		gets(temp_text);
@@ -51,8 +52,10 @@ int main(void)
 				list_delete_all();
 				break;
 
+			case 5:
+				return 0;
 			default:
-				DPRINTF("\n Wrong Option ");
+				DPRINTF("\n Wrong Option: Try Again ");
 				break;
 		}
 	}
