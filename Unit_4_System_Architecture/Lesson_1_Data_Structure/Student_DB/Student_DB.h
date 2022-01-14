@@ -18,6 +18,8 @@
 #define DPRINTF(...) 		{fflush(stdout);fflush(stdin);\
 							printf(__VA_ARGS__);\
 							fflush(stdout);fflush(stdin);}
+
+/*=========== TypeDefs ============*/
 struct SStudentData
 {
 	int ID;
@@ -31,17 +33,21 @@ struct SStudentNode
 	struct SStudentNode *pNext;
 };
 
+/*=========== APIs ============*/
+
 // Fill the student data
 void fill_the_record(struct SStudentNode *NewStudent);
 
 // Add a student to the list
 void list_add_student(void);
 
-
+// Delete a student from the list
 int list_delete_student(void);
 
+// Print all students in the list
 void list_view_students(void);
 
+// Delete all students in the list
 void list_delete_all(void);
 
 

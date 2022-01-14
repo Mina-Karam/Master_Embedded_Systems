@@ -42,6 +42,13 @@ void list_add_student(void)
 		// Create the first record
 		pNewStudent = (struct SStudentNode*) malloc(sizeof(struct SStudentNode));
 
+		// Check for invalid allocation
+		if(pNewStudent == NULL)
+		{
+			printf("Error: Can't create new student\n");
+			return;
+		}
+
 		// Assign the gpFirstStudent to it
 		gpFirstStudent = pNewStudent;
 	}
@@ -68,6 +75,7 @@ void list_add_student(void)
 	pNewStudent->pNext = NULL;
 }
 
+// Delete a student from the list
 int list_delete_student(void)
 {
 	char temp_text[NAME_LENGTH];
@@ -107,11 +115,11 @@ int list_delete_student(void)
 
 		}
 	}
-	DPRINTF("The ID selected not find. \n");
+	DPRINTF("\n\tThe ID selected not find. \n");
 	return 0; // can't Find it
 }
 
-
+// Print all students in the list
 void list_view_students(void)
 {
 	struct SStudentNode *pCurrentStudent = gpFirstStudent;
@@ -132,6 +140,7 @@ void list_view_students(void)
 	}
 }
 
+// Delete all students in the list
 void list_delete_all(void)
 {
 	struct SStudentNode *pCurrentStudent = gpFirstStudent;
