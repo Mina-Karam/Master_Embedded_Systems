@@ -185,3 +185,28 @@ void list_get_node(int index)
 	}
 }
 
+// Get the list length using iteration (looping)
+int list_students_count_iterative(void)
+{
+	// Check if the list is empty
+	if(gpFirstStudent == NULL )
+	{
+		DPRINTF("\nThe List is Empty.\n");
+		return 0;
+	}
+
+	struct SStudentNode *pTemp = gpFirstStudent;
+	unsigned int counter = 0;
+
+	// Looping in list
+	while(pTemp)
+	{
+		if(pTemp->pNext == NULL)
+		{
+			break;
+		}
+		pTemp = pTemp->pNext;
+		counter++;
+	}
+	return counter;
+}

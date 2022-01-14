@@ -53,5 +53,8 @@ void list_delete_all(void);
 // Get a Student node form the list
 void list_get_node(int index);
 
+// Get the list length using iteration (looping)
+int list_students_count_iterative(void);
+
 
 #endif /* STUDENT_DB_H_ */

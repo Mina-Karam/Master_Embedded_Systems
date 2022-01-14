@@ -20,6 +20,7 @@
 int main(void)
 {
 	char temp_text[NAME_LENGTH];
+	int num = 0;
 
 	while(1)
 	{
@@ -30,7 +31,8 @@ int main(void)
 		DPRINTF("\n\t 3: View Students");
 		DPRINTF("\n\t 4: Delete All");
 		DPRINTF("\n\t 5: Get Node");
-		DPRINTF("\n\t 6: Exit");
+		DPRINTF("\n\t 6: Get Students counter by Iteration");
+		DPRINTF("\n\t 7: Exit");
 		DPRINTF("\n\n Enter option number: ");
 
 		gets(temp_text);
@@ -56,11 +58,16 @@ int main(void)
 			case 5:
 				DPRINTF("Enter Node Number: ");
 				gets(temp_text);
-				int num = atoi(temp_text);
+				num = atoi(temp_text);
 				list_get_node(num);
 				break;
 
 			case 6:
+				num = list_students_count_iterative();
+				DPRINTF("Student Numbers : %d\n", num);
+				break;
+
+			case 7:
 				return 0;
 			default:
 				DPRINTF("\n Wrong Option: Try Again ");
