@@ -21,6 +21,7 @@ int main(void)
 {
 	char temp_text[NAME_LENGTH];
 	int num = 0;
+	struct SStudentNode *gpStudent ;
 
 	while(1)
 	{
@@ -32,7 +33,8 @@ int main(void)
 		DPRINTF("\n\t 4: Delete All");
 		DPRINTF("\n\t 5: Get Node");
 		DPRINTF("\n\t 6: Get Students counter by Iteration");
-		DPRINTF("\n\t 7: Exit");
+		DPRINTF("\n\t 7: Get Students counter by Recursion");
+		DPRINTF("\n\t 8: Exit");
 		DPRINTF("\n\n Enter option number: ");
 
 		gets(temp_text);
@@ -68,7 +70,13 @@ int main(void)
 				break;
 
 			case 7:
+				num = list_students_count_recursive(gpStudent);
+				DPRINTF("Student Numbers : %d\n", num);
+				break;
+
+			case 8:
 				return 0;
+
 			default:
 				DPRINTF("\n Wrong Option: Try Again ");
 				break;

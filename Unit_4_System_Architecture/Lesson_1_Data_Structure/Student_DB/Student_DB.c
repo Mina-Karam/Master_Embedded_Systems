@@ -196,7 +196,7 @@ int list_students_count_iterative(void)
 	}
 
 	struct SStudentNode *pTemp = gpFirstStudent;
-	unsigned int counter = 0;
+	unsigned int counter = 1;
 
 	// Looping in list
 	while(pTemp)
@@ -209,4 +209,24 @@ int list_students_count_iterative(void)
 		counter++;
 	}
 	return counter;
+}
+
+// Get the list length using recursion
+int list_students_count_recursive(struct SStudentNode *list)
+{
+	// Check if the list is empty
+	if(gpFirstStudent == NULL )
+	{
+		DPRINTF("\nThe List is Empty.\n");
+		return 0;
+	}
+
+	if(list == NULL)
+	{
+		return 0;
+	}
+	else
+	{
+		return 1+list_students_count_recursive(list->pNext);
+	}
 }
