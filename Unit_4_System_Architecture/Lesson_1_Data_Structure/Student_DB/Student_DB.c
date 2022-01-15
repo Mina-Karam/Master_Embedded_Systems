@@ -287,3 +287,30 @@ void list_get_middle_student(void)
 	list_get_node(studentNumber/2);
 }
 
+// Reverse the arrangement of the list
+void list_reverse_students(void)
+{
+	// Initialize node for previous, current and next
+	struct SStudentNode *pPreviousStudent = NULL;
+	struct SStudentNode *pCurrentStudent = gpFirstStudent;
+	struct SStudentNode *pNextStudent = NULL;
+
+	// Check if the list is empty
+	if(gpFirstStudent == NULL)
+	{
+		DPRINTF("\nThe List is Empty.\n");
+		return;
+	}
+
+	// if pCurrentStudent get the last node in the list
+	while(pCurrentStudent != NULL)
+	{
+		pNextStudent = pCurrentStudent->pNext;
+		pCurrentStudent->pNext = pPreviousStudent;
+		pPreviousStudent = pCurrentStudent;
+		pCurrentStudent = pNextStudent;
+	}
+
+	// After reverse all node
+	gpFirstStudent = pPreviousStudent;
+}

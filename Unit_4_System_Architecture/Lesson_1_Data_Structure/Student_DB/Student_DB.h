@@ -65,4 +65,7 @@ void list_get_node_from_end(int index);
 // Get the middle student even the number (odd or even)
 void list_get_middle_student(void);
 
+// Reverse the arrangement of the list
+void list_reverse_students(void);
+
 #endif /* STUDENT_DB_H_ */
