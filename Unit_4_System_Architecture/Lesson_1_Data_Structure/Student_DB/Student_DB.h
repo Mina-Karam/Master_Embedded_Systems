@@ -59,4 +59,7 @@ int list_students_count_iterative(void);
 // Get the list length using recursion
 int list_students_count_recursive(struct SStudentNode *list);
 
+// Get a Student node form the end of list
+void list_get_node_from_end(int index);
+
 #endif /* STUDENT_DB_H_ */

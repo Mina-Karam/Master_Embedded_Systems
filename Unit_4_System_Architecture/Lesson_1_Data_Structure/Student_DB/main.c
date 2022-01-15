@@ -21,7 +21,7 @@ int main(void)
 {
 	char temp_text[NAME_LENGTH];
 	int num = 0;
-	struct SStudentNode *gpStudent ;
+	struct SStudentNode *gpStudent = NULL ;
 
 	while(1)
 	{
@@ -34,7 +34,8 @@ int main(void)
 		DPRINTF("\n\t 5: Get Node");
 		DPRINTF("\n\t 6: Get Students counter by Iteration");
 		DPRINTF("\n\t 7: Get Students counter by Recursion");
-		DPRINTF("\n\t 8: Exit");
+		DPRINTF("\n\t 8: Get Node from the end");
+		DPRINTF("\n\t 9: Exit");
 		DPRINTF("\n\n Enter option number: ");
 
 		gets(temp_text);
@@ -75,10 +76,17 @@ int main(void)
 				break;
 
 			case 8:
+				DPRINTF("Enter Node Number from the end : ");
+				gets(temp_text);
+				num = atoi(temp_text);
+				list_get_node_from_end(num);
+				break;
+
+			case 9:
 				return 0;
 
 			default:
-				DPRINTF("\n Wrong Option: Try Again ");
+				DPRINTF("\n Wrong Option: Try Again \n\n");
 				break;
 		}
 	}

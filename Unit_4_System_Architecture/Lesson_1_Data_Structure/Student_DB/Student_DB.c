@@ -230,3 +230,41 @@ int list_students_count_recursive(struct SStudentNode *list)
 		return 1+list_students_count_recursive(list->pNext);
 	}
 }
+
+// Get a Student node form the end of list
+void list_get_node_from_end(int index)
+{
+	// Check if the list is empty
+	if(gpFirstStudent == NULL || index < 0)
+	{
+		DPRINTF("\nThe List is Empty.\n");
+	}
+
+	// Initialize main & Reference pointer to the beginning of the list
+	struct SStudentNode *pMain = gpFirstStudent;
+	struct SStudentNode *pRef = gpFirstStudent;
+
+	// Move reference pointer by the desired offset from main pointer
+	for (; index-- ; pRef = pRef->pNext)
+	{
+		// if user input index out of scope
+		if(pRef == NULL)
+		{
+			DPRINTF("\n failed to get node from the end\n");
+			return ;
+		}
+	}
+
+	// Move main & ref pointer relatively one by one
+	if(pRef->pNext != NULL)
+	{
+		pMain = pMain->pNext;
+		pRef = pRef->pNext;
+	}
+
+	DPRINTF("\n Record Index from end zero-based");
+	DPRINTF("\n\t ID : %d",pMain->Student.ID);
+	DPRINTF("\n\t Name : %s",pMain->Student.Name);
+	DPRINTF("\n\t Height : %0.2f\n",pMain->Student.height);
+}
+
