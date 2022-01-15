@@ -35,7 +35,8 @@ int main(void)
 		DPRINTF("\n\t 6: Get Students counter by Iteration");
 		DPRINTF("\n\t 7: Get Students counter by Recursion");
 		DPRINTF("\n\t 8: Get Node from the end");
-		DPRINTF("\n\t 9: Exit");
+		DPRINTF("\n\t 9: Get Middle student");
+		DPRINTF("\n\t 10: Exit");
 		DPRINTF("\n\n Enter option number: ");
 
 		gets(temp_text);
@@ -83,6 +84,10 @@ int main(void)
 				break;
 
 			case 9:
+				list_get_middle_student();
+				break;
+
+			case 10:
 				return 0;
 
 			default:

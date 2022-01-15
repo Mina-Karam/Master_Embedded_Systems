@@ -268,3 +268,22 @@ void list_get_node_from_end(int index)
 	DPRINTF("\n\t Height : %0.2f\n",pMain->Student.height);
 }
 
+// Get the middle student even the number (odd or even)
+void list_get_middle_student(void)
+{
+	// Check if the list is empty
+	if(gpFirstStudent == NULL)
+	{
+		DPRINTF("\nThe List is Empty.\n");
+	}
+
+	// Get Student number
+	int studentNumber = 0;
+
+	// Get number of nodes in the list
+	studentNumber = list_students_count_iterative();
+
+	// Get the index we want
+	list_get_node(studentNumber/2);
+}
+

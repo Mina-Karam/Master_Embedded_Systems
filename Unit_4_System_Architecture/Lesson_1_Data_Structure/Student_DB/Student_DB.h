@@ -62,4 +62,7 @@ int list_students_count_recursive(struct SStudentNode *list);
 // Get a Student node form the end of list
 void list_get_node_from_end(int index);
 
+// Get the middle student even the number (odd or even)
+void list_get_middle_student(void);
+
 #endif /* STUDENT_DB_H_ */
