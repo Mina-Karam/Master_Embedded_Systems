@@ -188,7 +188,7 @@ void show_students_info(FIFO_Buf_st *students_queue)
 // Get student date by its roll number
 void find_student_by_roll(FIFO_Buf_st *students_queue)
 {
-	int input_num;
+	int input_number;
 	Item *student;
 	FIFO_Status_st queue_status;
 
@@ -202,15 +202,15 @@ void find_student_by_roll(FIFO_Buf_st *students_queue)
 
 	// Enter roll number you want to find
 	printf("\nEnter roll number: ");
-	scanf("%d", &input_num);
+	scanf("%d", &input_number);
 
 	// Scan in the queue to find this roll number
-	student = search_student_by_roll(students_queue, input_num);
+	student = search_student_by_roll(students_queue, input_number);
 
 	// Check if we find roll number in the queue
 	if (student == NULL)
 	{
-		printf("\n[ERROR] Roll number %d in not found\n", input_num);
+		printf("\n[ERROR] Roll number %d in not found\n", input_number);
 		return;
 	}
 	else
@@ -342,6 +342,71 @@ void print_students_count(FIFO_Buf_st *students_queue)
 	printf("[INFO] You can add up to %d students\n", capacity);
 	printf("[INFO] You can add %d more students\n", capacity - counter);
 
+}
+
+// Delete student from the queue
+void delete_student_by_roll(FIFO_Buf_st *students_queue)
+{
+	int input_number, i, flag = 0;
+	Item *student;
+
+	FIFO_Status_st queue_status;
+
+	// Checking if the queue is empty
+	queue_status = FIFO_is_empty(students_queue);
+
+	if((queue_status == FIFO_EMPTY) || (queue_status == FIFO_NULL))
+	{
+		printf("\n[ERROR] Delete student by roll number failed\n");
+		return;
+	}
+
+	// Enter roll number you want to delete
+	printf("\nEnter roll number: ");
+	scanf("%d", &input_number);
+
+	student = students_queue->base;
+	// Loop inside queue
+	for (i = 0; i < students_queue->counter; ++i)
+	{
+		if(student->roll_number == input_number)
+		{
+			// Deleting student
+			*student = *(students_queue->tail);
+
+			// Update counter of queue
+			students_queue->counter--;
+
+			// Check if we reach the last item in the queue
+			if((students_queue->tail + 1) == (students_queue->base + students_queue->length))
+			{
+				// Set to the start
+				students_queue->tail = students_queue->base;
+			}
+			else
+			{
+				// Just go to the next tail :D
+				students_queue->tail++;
+			}
+
+			flag = 1;
+			break;
+		}
+		else
+		{
+			flag = 0;
+		}
+		student++;
+	}
+
+	if(flag == 1)
+	{
+		printf("\n[INFO] The Roll Number is removed successfully\n");
+	}
+	else
+	{
+		printf("\n[ERROR] This Roll Number %d not found\n",input_number);
+	}
 }
 
 static void print_student_info(struct student_info *student)

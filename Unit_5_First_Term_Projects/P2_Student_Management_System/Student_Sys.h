@@ -66,6 +66,9 @@ void find_student_by_course(FIFO_Buf_st *students_queue);
 // Get students number in queue
 void print_students_count(FIFO_Buf_st *students_queue);
 
+// Delete student from the queue
+void delete_student_by_roll(FIFO_Buf_st *students_queue);
+
 // Print all students in the queue
 void show_students_info(FIFO_Buf_st *students_queue);
 

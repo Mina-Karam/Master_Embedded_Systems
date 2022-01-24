@@ -33,8 +33,9 @@ int main(void)
 		printf("\n\t 4: Find Student by First Name");
 		printf("\n\t 5: Find Student by Course ID");
 		printf("\n\t 6: Print Students Number");
-		printf("\n\t 7: View Students");
-		printf("\n\t 8: Exit");
+		printf("\n\t 7: Delete Student by Roll Number");
+		printf("\n\t 8: View Students");
+		printf("\n\t 9: Exit");
 		printf("\n\n Enter option number: ");
 
 		scanf("%d",&select_option);
@@ -47,8 +48,9 @@ int main(void)
 			case 4: find_student_by_firstname(&students_queue);break;
 			case 5: find_student_by_course(&students_queue);break;
 			case 6: print_students_count(&students_queue);break;
-			case 7: show_students_info(&students_queue);break;
-			case 8: return 0;
+			case 7: delete_student_by_roll(&students_queue);break;
+			case 8: show_students_info(&students_queue);break;
+			case 9: return 0;
 			default: printf("\n Wrong Option: Try Again \n\n");break;
 		}
 	}
