@@ -40,7 +40,7 @@ FIFO_Status_st students_sys_init(FIFO_Buf_st *students_queue, Item *item, uint32
 // Enter student data form file
 void add_student_from_file(FIFO_Buf_st *students_queue)
 {
-	struct student_info new_student;
+	Item new_student;
 	uint8_t i;
 
 	// Opening a student.txt file
@@ -102,10 +102,57 @@ void add_student_from_file(FIFO_Buf_st *students_queue)
 	fclose(students_file);
 }
 
+// Enter student data manually from console
+void add_student_manualy(FIFO_Buf_st *students_queue)
+{
+	Item new_student;
+	uint8_t i;
+
+	printf("\n=== Enter student data ===\n");
+	printf("\tEnter roll number: ");
+	scanf("%d", &new_student.roll_number);
+
+	// Scan if the roll number which entered is exist
+	if(search_student_by_roll(students_queue, new_student.roll_number))
+	{
+		printf("\n[ERROR] Roll number %d is already taken\n", new_student.roll_number);
+		printf("\n[ERROR] Adding student manually failed\n");
+		return;
+	}
+
+	// If not, Continue reading other data
+	printf("\tEnter first name: ");
+	scanf("%s", new_student.first_name);
+
+	printf("\tEnter second name: ");
+	scanf("%s", new_student.last_name);
+
+	printf("\tEnter GPA: ");
+	scanf("%f", &new_student.GPA);
+
+	printf("\tEnter Courses IDs\n");
+	for (i = 0; i < COURSES_NUMBER; ++i)
+	{
+		printf("\t\tEnter Courses no.%d: ",i+1);
+		scanf("%d", &new_student.course_id[i]);
+	}
+
+	// Add new student
+	if(FIFO_enqueue(students_queue, new_student) == FIFO_NO_ERROR)
+	{
+		printf("\n[INFO] Student details us saved successfully\n");
+	}
+	else
+	{
+		printf("\n[ERROR] Adding students manually failed\n");
+		return;
+	}
+}
+
 // Print all students in the queue
 void show_students_info(FIFO_Buf_st *students_queue)
 {
-	struct student_info *student;
+	Item *student;
 	uint8_t i;
 	FIFO_Status_st queue_status;
 

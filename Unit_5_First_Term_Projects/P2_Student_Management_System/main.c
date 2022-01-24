@@ -27,18 +27,20 @@ int main(void)
 	{
 		printf(" =============================\n");
 		printf("\n Choose on of the following options \n");
-		printf("\n\t 1: Add Student From Text File");
-		printf("\n\t 2: View Students");
-		printf("\n\t 3: Exit");
+		printf("\n\t 1: Add Student Manually");
+		printf("\n\t 2: Add Student From Text File");
+		printf("\n\t 3: View Students");
+		printf("\n\t 4: Exit");
 		printf("\n\n Enter option number: ");
 
 		scanf("%d",&select_option);
 		printf(" ============================= ");
 		switch(select_option)
 		{
-			case 1: add_student_from_file(&students_queue);break;
-			case 2: show_students_info(&students_queue);break;
-			case 3: return 0;
+			case 1: add_student_manualy(&students_queue);break;
+			case 2: add_student_from_file(&students_queue);break;
+			case 3: show_students_info(&students_queue);break;
+			case 4: return 0;
 			default: printf("\n Wrong Option: Try Again \n\n");break;
 		}
 	}
