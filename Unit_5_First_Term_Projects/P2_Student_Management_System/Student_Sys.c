@@ -332,6 +332,18 @@ void find_student_by_course(FIFO_Buf_st *students_queue)
 	}
 }
 
+// Get students number in queue
+void print_students_count(FIFO_Buf_st *students_queue)
+{
+	int counter = students_queue->counter;
+	int capacity = students_queue->length;
+
+	printf("[INFO] Total number of students is %d\n", counter);
+	printf("[INFO] You can add up to %d students\n", capacity);
+	printf("[INFO] You can add %d more students\n", capacity - counter);
+
+}
+
 static void print_student_info(struct student_info *student)
 {
 	int i;
