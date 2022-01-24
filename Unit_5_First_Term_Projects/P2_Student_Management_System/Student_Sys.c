@@ -185,6 +185,42 @@ void show_students_info(FIFO_Buf_st *students_queue)
 	}
 }
 
+// Get student date by its roll number
+void find_student_by_roll(FIFO_Buf_st *students_queue)
+{
+	uint32_t input_num;
+	Item *student;
+	FIFO_Status_st queue_status;
+
+	// Checking if the queue is empty
+	queue_status = FIFO_is_empty(students_queue);
+	if((queue_status == FIFO_EMPTY) || (queue_status == FIFO_NULL))
+	{
+		printf("\n[ERROR] Find student by roll number failed\n");
+		return;
+	}
+
+	// Enter roll number you want to find
+	printf("\nEnter roll number: ");
+	scanf("%d", &input_num);
+
+	// Scan in the queue to find this roll number
+	student = search_student_by_roll(students_queue, input_num);
+
+	// Check if we find roll number in the queue
+	if (student == NULL)
+	{
+		printf("\n[ERROR] Roll number %d in not found\n", input_num);
+		return;
+	}
+	else
+	{
+		// If we found the roll number lets print all data
+		print_student_info(student);
+	}
+
+}
+
 static void print_student_info(struct student_info *student)
 {
 	uint8_t i;

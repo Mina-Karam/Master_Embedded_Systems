@@ -54,14 +54,14 @@ void add_student_from_file(FIFO_Buf_st *students_queue);
 // Enter student data manually from console
 void add_student_manualy(FIFO_Buf_st *students_queue);
 
+// Get student date by its roll number
+void find_student_by_roll(FIFO_Buf_st *students_queue);
+
 // Print all students in the queue
 void show_students_info(FIFO_Buf_st *students_queue);
 
 // Enqueue item in the FIFO given a data item
 FIFO_Status_st FIFO_enqueue(FIFO_Buf_st *fifo_buf, Item item);
-
-// Dequeue item from the FIFO given the address of the item holder
-FIFO_Status_st FIFO_dequeue(FIFO_Buf_st *fifo_buf, Item *item);
 
 // Is the FIFO full ?!
 FIFO_Status_st FIFO_is_full(FIFO_Buf_st *fifo_buf);
