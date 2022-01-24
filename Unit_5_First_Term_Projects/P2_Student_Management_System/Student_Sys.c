@@ -14,10 +14,10 @@ FILE *students_file;
 
 static void print_student_info(struct student_info *student);
 
-static struct student_info *search_student_by_roll(FIFO_Buf_st *students_queue, uint32_t roll);
+static struct student_info *search_student_by_roll(FIFO_Buf_st *students_queue, int roll);
 
 // Student Queue Initialization
-FIFO_Status_st students_sys_init(FIFO_Buf_st *students_queue, Item *item, uint32_t length)
+FIFO_Status_st students_sys_init(FIFO_Buf_st *students_queue, Item *item, int length)
 {
 	// Check parameters validity
 	if(!students_queue || !item || !length)
@@ -41,7 +41,7 @@ FIFO_Status_st students_sys_init(FIFO_Buf_st *students_queue, Item *item, uint32
 void add_student_from_file(FIFO_Buf_st *students_queue)
 {
 	Item new_student;
-	uint8_t i;
+	int i;
 
 	// Opening a student.txt file
 	students_file = fopen("students.txt", "r");
@@ -106,7 +106,7 @@ void add_student_from_file(FIFO_Buf_st *students_queue)
 void add_student_manualy(FIFO_Buf_st *students_queue)
 {
 	Item new_student;
-	uint8_t i;
+	int i;
 
 	printf("\n=== Enter student data ===\n");
 	printf("\tEnter roll number: ");
@@ -153,7 +153,7 @@ void add_student_manualy(FIFO_Buf_st *students_queue)
 void show_students_info(FIFO_Buf_st *students_queue)
 {
 	Item *student;
-	uint8_t i;
+	char i;
 	FIFO_Status_st queue_status;
 
 	// Checking if the queue is empty
@@ -188,7 +188,7 @@ void show_students_info(FIFO_Buf_st *students_queue)
 // Get student date by its roll number
 void find_student_by_roll(FIFO_Buf_st *students_queue)
 {
-	uint32_t input_num;
+	int input_num;
 	Item *student;
 	FIFO_Status_st queue_status;
 
@@ -218,12 +218,62 @@ void find_student_by_roll(FIFO_Buf_st *students_queue)
 		// If we found the roll number lets print all data
 		print_student_info(student);
 	}
-
 }
+
+
+// Get student date by its first name
+void find_student_by_firstname(FIFO_Buf_st *students_queue)
+{
+	Item *student = students_queue->tail;
+	char input_name[NAME_LENGTH], i;
+
+	FIFO_Status_st queue_status;
+
+	// Checking if the queue is empty
+	queue_status = FIFO_is_empty(students_queue);
+
+	if((queue_status == FIFO_EMPTY) || (queue_status == FIFO_NULL))
+	{
+		printf("\n[ERROR] Find student by first name failed\n");
+		return;
+	}
+
+	printf("\nEnter First Name: ");
+	scanf("%s",input_name);
+
+	// Loop inside queue
+	for (i = 0; i < students_queue->counter; ++i)
+	{
+		// Compare between two string the input name and the name in queue to search about it
+		if (!(strcmp(input_name, student->first_name)))
+		{
+			print_student_info(student);
+			return;
+		}
+		else
+		{
+			printf("\n[ERROR] %s in not found\n",input_name);
+			return;
+		}
+
+		// Check if we fine the the roll we search about to beak
+		if((student +1) == (students_queue->base + students_queue->length))
+		{
+			// Set to the start
+			student = students_queue->base;
+		}
+		else
+		{
+			// Just go to the next tail :D
+			student++;
+		}
+	}
+}
+
 
 static void print_student_info(struct student_info *student)
 {
-	uint8_t i;
+	int i;
 
 	printf("The student details are\n");
 	printf("\tFirst Name: %s\n", student->first_name);
@@ -238,9 +288,9 @@ static void print_student_info(struct student_info *student)
 	}
 }
 
-static struct student_info *search_student_by_roll(FIFO_Buf_st *students_queue, uint32_t roll)
+static struct student_info *search_student_by_roll(FIFO_Buf_st *students_queue, int roll)
 {
-	uint8_t i ;
+	int i ;
 	// we start from the tail because form base we can fine that there is no data stored / removed
 	Item *student = students_queue->tail;
 

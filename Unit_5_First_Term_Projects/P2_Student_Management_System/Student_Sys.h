@@ -9,18 +9,18 @@
 #define STUDENT_SYS_H_
 
 #include "stdio.h"
-#include "stdint.h"
+#include "string.h"
 
 #define NAME_LENGTH 20
 #define COURSES_NUMBER 5
 
 // Student Structures
 struct student_info {
-	uint8_t first_name[NAME_LENGTH];
-	uint8_t last_name[NAME_LENGTH];
-	uint32_t roll_number;
+	char first_name[NAME_LENGTH];
+	char last_name[NAME_LENGTH];
+	int roll_number;
 	float GPA;
-	uint32_t course_id[COURSES_NUMBER];
+	int course_id[COURSES_NUMBER];
 };
 
 // Data type of buffer item
@@ -31,8 +31,8 @@ typedef struct {
 	Item *base;
 	Item *head;
 	Item *tail;
-	uint32_t length;
-	uint32_t counter;
+	int length;
+	int counter;
 }FIFO_Buf_st;
 
 typedef enum {
@@ -46,7 +46,7 @@ typedef enum {
 
 
 // Student Queue Initialization
-FIFO_Status_st students_sys_init(FIFO_Buf_st *students_queue, Item *item, uint32_t length);
+FIFO_Status_st students_sys_init(FIFO_Buf_st *students_queue, Item *item, int length);
 
 // Enter student data form file
 void add_student_from_file(FIFO_Buf_st *students_queue);
@@ -56,6 +56,9 @@ void add_student_manualy(FIFO_Buf_st *students_queue);
 
 // Get student date by its roll number
 void find_student_by_roll(FIFO_Buf_st *students_queue);
+
+// Get student date by its first name
+void find_student_by_firstname(FIFO_Buf_st *students_queue);
 
 // Print all students in the queue
 void show_students_info(FIFO_Buf_st *students_queue);
