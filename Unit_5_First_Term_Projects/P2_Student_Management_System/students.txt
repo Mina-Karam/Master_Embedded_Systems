@@ -1,5 +1,5 @@
 1 Mina Karam 2.8 1 2 3 4 5
-1 Youstina Karam 3.3 3 12 37 29 63
-3 Leila Mustafa 3.4 45 21 55 18 46
-4 Koky Samy 3.6 45 21 55 18 46
-5 Esraa Hegazy 3.6 45 21 55 18 46
+1 Youstina Karam 3.3 5 21 73 92 36
+3 Leila Mustafa 3.4 54 12 55 81 64
+4 Koky Samy 3.6 5 21 55 92 64
+5 Esraa Hegazy 3.6 54 12 55 81 64

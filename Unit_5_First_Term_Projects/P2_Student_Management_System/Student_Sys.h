@@ -60,6 +60,9 @@ void find_student_by_roll(FIFO_Buf_st *students_queue);
 // Get student date by its first name
 void find_student_by_firstname(FIFO_Buf_st *students_queue);
 
+// Get student date by its course
+void find_student_by_course(FIFO_Buf_st *students_queue);
+
 // Print all students in the queue
 void show_students_info(FIFO_Buf_st *students_queue);
 

@@ -256,7 +256,7 @@ void find_student_by_firstname(FIFO_Buf_st *students_queue)
 			return;
 		}
 
-		// Check if we fine the the roll we search about to beak
+		// Check if we reach the last item in the queue
 		if((student +1) == (students_queue->base + students_queue->length))
 		{
 			// Set to the start
@@ -270,6 +270,67 @@ void find_student_by_firstname(FIFO_Buf_st *students_queue)
 	}
 }
 
+// Get student date by its course
+void find_student_by_course(FIFO_Buf_st *students_queue)
+{
+	Item *student;
+	int input_id, i, j, number_enroled_student = 0;
+
+	FIFO_Status_st queue_status;
+
+	// Checking if the queue is empty
+	queue_status = FIFO_is_empty(students_queue);
+
+	if((queue_status == FIFO_EMPTY) || (queue_status == FIFO_NULL))
+	{
+		printf("\n[ERROR] Find student by course failed\n");
+		return;
+	}
+
+	// Get the ID want to search about
+	printf("\nEnter Course ID: ");
+	scanf("%d", &input_id);
+
+	// Loop inside queue
+	student = students_queue->tail;
+	for (i = 0; i < students_queue->counter; ++i)
+	{
+		// Scan inside every item
+		for(j = 0; j < COURSES_NUMBER; ++j)
+		{
+			// Check if we find student have this ID
+			if(student->course_id[j] == input_id)
+			{
+				print_student_info(student);
+				number_enroled_student++;
+				printf("\n");
+				break;
+			}
+		}
+
+		// Check if we reach the last item in the queue
+		if((student +1) == (students_queue->base + students_queue->length))
+		{
+			// Set to the start
+			student = students_queue->base;
+		}
+		else
+		{
+			// Just go to the next tail :D
+			student++;
+		}
+	}
+
+	// Check if not found in any student
+	if(number_enroled_student == 0)
+	{
+		printf("\n[ERROR] Course id %d is not found\n", input_id);
+	}
+	else
+	{
+		printf("\n[INFO] Total number of students enrolled: %d\n", number_enroled_student);
+	}
+}
 
 static void print_student_info(struct student_info *student)
 {
