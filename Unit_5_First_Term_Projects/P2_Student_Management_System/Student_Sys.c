@@ -149,42 +149,6 @@ void add_student_manualy(FIFO_Buf_st *students_queue)
 	}
 }
 
-// Print all students in the queue
-void show_students_info(FIFO_Buf_st *students_queue)
-{
-	Item *student;
-	char i;
-	FIFO_Status_st queue_status;
-
-	// Checking if the queue is empty
-	queue_status = FIFO_is_empty(students_queue);
-	if((queue_status == FIFO_EMPTY) || (queue_status == FIFO_NULL))
-	{
-		printf("\n[ERROR] Show students info failed\n");
-		return;
-	}
-
-	printf("\nAll Students\n\n");
-
-	student = students_queue->tail;
-	for (i = 0; i < students_queue->counter; ++i)
-	{
-		print_student_info(student);
-		printf("\n");
-
-		// Check if we reach the last item in the queue
-		if((student + 1) == (students_queue->base + students_queue->length))
-		{
-			student = students_queue->base;
-		}
-		else
-		{
-			// Just go to the next tail :D
-			student++;
-		}
-	}
-}
-
 // Get student date by its roll number
 void find_student_by_roll(FIFO_Buf_st *students_queue)
 {
@@ -409,6 +373,158 @@ void delete_student_by_roll(FIFO_Buf_st *students_queue)
 	}
 }
 
+// Update a specific data in queue
+void update_student_by_roll(FIFO_Buf_st *students_queue)
+{
+	Item *update_student, *student;
+	int i, input_roll , input_option, input_new_roll, flag = 0;
+
+	FIFO_Status_st queue_status;
+
+	// Checking if the queue is empty
+	queue_status = FIFO_is_empty(students_queue);
+
+	if((queue_status == FIFO_EMPTY) || (queue_status == FIFO_NULL))
+	{
+		printf("\n[ERROR] Delete student by roll number failed\n");
+		return;
+	}
+
+	// Enter roll number you want to update
+	printf("\nEnter roll number: ");
+	scanf("%d", &input_roll);
+
+	update_student = search_student_by_roll(students_queue, input_roll);
+
+	// Check if we find roll number in the queue
+	if (update_student == NULL)
+	{
+		printf("\n[ERROR] Roll number %d in not found\n", input_roll);
+		return;
+	}
+	else
+	{
+		// If we found the roll number lets print all data
+		printf("\n==== Student data ====\n");
+		print_student_info(update_student);
+	}
+
+	printf("\nWhich date do you want to change ?\n");
+	printf("\t 1: The Roll Number\n");
+	printf("\t 2: The First Name\n");
+	printf("\t 3: The Second Name\n");
+	printf("\t 4: The GPA Score\n");
+	printf("\t 5: The Courses ID\n");
+	printf("Enter your option: ");
+
+	scanf("%d",&input_option);
+	switch (input_option)
+	{
+		case 1:
+			printf("Enter the new roll number: ");
+			scanf("%d",&input_new_roll);
+
+			student = students_queue->tail;
+			// Loop inside the queue
+			for (i = 0; i < students_queue->counter; ++i)
+			{
+				// Check if we find the the roll we search about to break
+				if (student->roll_number == input_new_roll)
+				{
+					// Get out form for loop
+					printf("\n[ERROR] This Roll Number %d is exist\n",input_new_roll);
+					flag = 1;
+					break;
+				}
+
+				// Check if we reach the last item in the queue
+				if((student + 1) == (students_queue->base + students_queue->length))
+				{
+					student = students_queue->base;
+				}
+				else
+				{
+					// Just go to the next tail :D
+					student++;
+				}
+			}
+
+			if(flag == 0)
+			{
+				update_student->roll_number = input_new_roll;
+				printf("\n[INFO] The Roll Number %d in updated successfully\n", input_new_roll);
+			}
+			break;
+
+		case 2:
+			printf("Enter the new first name: ");
+			scanf("%s", update_student->first_name);
+			printf("\n[INFO] The First Name %s in updated successfully\n",update_student->first_name);
+			break;
+
+		case 3:
+			printf("Enter the new last name: ");
+			scanf("%s", update_student->last_name);
+			printf("\n[INFO] The Last Name %s in updated successfully\n",update_student->last_name);
+			break;
+
+		case 4:
+			printf("Enter the new GPA: ");
+			scanf("%f", &update_student->GPA);
+			printf("\n[INFO] The GPA Score %0.1f in updated successfully\n", update_student->GPA);
+			break;
+
+		case 5:
+			printf("Enter the course number from %d to %d: ", 1, COURSES_NUMBER);
+			scanf("%d", &input_option);
+			printf("Enter the new course id: ");
+			scanf("%d", &update_student->course_id[input_option - 1]);
+			printf("\n[INFO] The Course ID %d in updated successfully\n", update_student->course_id[input_option - 1]);
+			break;
+
+		default:
+			break;
+	}
+
+
+}
+
+// Print all students in the queue
+void show_students_info(FIFO_Buf_st *students_queue)
+{
+	Item *student;
+	char i;
+	FIFO_Status_st queue_status;
+
+	// Checking if the queue is empty
+	queue_status = FIFO_is_empty(students_queue);
+	if((queue_status == FIFO_EMPTY) || (queue_status == FIFO_NULL))
+	{
+		printf("\n[ERROR] Show students info failed\n");
+		return;
+	}
+
+	printf("\nAll Students\n\n");
+
+	student = students_queue->tail;
+	for (i = 0; i < students_queue->counter; ++i)
+	{
+		print_student_info(student);
+		printf("\n");
+
+		// Check if we reach the last item in the queue
+		if((student + 1) == (students_queue->base + students_queue->length))
+		{
+			student = students_queue->base;
+		}
+		else
+		{
+			// Just go to the next tail :D
+			student++;
+		}
+	}
+}
+
 static void print_student_info(struct student_info *student)
 {
 	int i;
@@ -435,7 +551,7 @@ static struct student_info *search_student_by_roll(FIFO_Buf_st *students_queue, 
 	// Loop inside the queue
 	for (i = 0; i < students_queue->counter; ++i)
 	{
-		// Check if we fine the the roll we search about to beak
+		// Check if we find the the roll we search about to break
 		if (student->roll_number == roll)
 		{
 			// Get out form for loop

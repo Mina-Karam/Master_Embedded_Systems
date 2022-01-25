@@ -69,6 +69,9 @@ void print_students_count(FIFO_Buf_st *students_queue);
 // Delete student from the queue
 void delete_student_by_roll(FIFO_Buf_st *students_queue);
 
+// Update a specific data in queue
+void update_student_by_roll(FIFO_Buf_st *students_queue);
+
 // Print all students in the queue
 void show_students_info(FIFO_Buf_st *students_queue);
 
