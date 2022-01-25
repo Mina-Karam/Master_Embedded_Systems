@@ -51,6 +51,9 @@ FIFO_Status_st students_sys_init(FIFO_Buf_st *students_queue, Item *item, int le
 // Enter student data form file
 void add_student_from_file(FIFO_Buf_st *students_queue);
 
+// Enter student data form update file
+void add_student_from_update_file(FIFO_Buf_st *students_queue);
+
 // Enter student data manually from console
 void add_student_manualy(FIFO_Buf_st *students_queue);
 
@@ -71,6 +74,9 @@ void delete_student_by_roll(FIFO_Buf_st *students_queue);
 
 // Update a specific data in queue
 void update_student_by_roll(FIFO_Buf_st *students_queue);
+
+// Update students and what we do in file
+void update_student_file(FIFO_Buf_st *students_queue);
 
 // Print all students in the queue
 void show_students_info(FIFO_Buf_st *students_queue);

@@ -22,6 +22,19 @@ int main(void)
 
 	students_sys_init(&students_queue, students_buffer, STUDENTS_NUMBER);
 	printf("Welcome to the Student Management System\n");
+	printf("\nDo you want to recover last database ?!\n");
+	printf("\t1: Yes\n\t2: No\n");
+	printf("Enter your option: ");
+	scanf("%d",&select_option);
+
+	switch (select_option)
+	{
+		case 1:	add_student_from_update_file(&students_queue);break;
+		case 2: break;
+		default:break;
+	}
+
+
 
 	while(1)
 	{
@@ -52,7 +65,7 @@ int main(void)
 			case 7: delete_student_by_roll(&students_queue);break;
 			case 8: update_student_by_roll(&students_queue);break;
 			case 9: show_students_info(&students_queue);break;
-			case 10: return 0;
+			case 10: update_student_file(&students_queue); return 0;
 			default: printf("\n Wrong Option: Try Again \n\n");break;
 		}
 	}

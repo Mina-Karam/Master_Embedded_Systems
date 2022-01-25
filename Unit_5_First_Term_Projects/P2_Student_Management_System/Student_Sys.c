@@ -7,7 +7,7 @@
 
 #include "Student_Sys.h"
 
-FILE *students_file;
+FILE *students_file, *updated_students_file;
 
 // Private APIs
 /* we put the declaration here because we need it as static in this file only*/
@@ -43,7 +43,7 @@ void add_student_from_file(FIFO_Buf_st *students_queue)
 	Item new_student;
 	int i;
 
-	// Opening a student.txt file
+	// Opening a student.txt file with option read
 	students_file = fopen("students.txt", "r");
 
 	// Check if the file exist and there is data or not
@@ -87,7 +87,7 @@ void add_student_from_file(FIFO_Buf_st *students_queue)
 		// Enqueue new student
 		if((FIFO_enqueue(students_queue, new_student))== FIFO_NO_ERROR)
 		{
-			printf("\n[INFO] Roll number %d us saved successfully\n", new_student.roll_number);
+			printf("\n[INFO] Roll number %d is saved successfully\n", new_student.roll_number);
 		}
 		else
 		{
@@ -394,6 +394,7 @@ void update_student_by_roll(FIFO_Buf_st *students_queue)
 	printf("\nEnter roll number: ");
 	scanf("%d", &input_roll);
 
+	// Search about the input roll to get its whole item
 	update_student = search_student_by_roll(students_queue, input_roll);
 
 	// Check if we find roll number in the queue
@@ -417,6 +418,7 @@ void update_student_by_roll(FIFO_Buf_st *students_queue)
 	printf("\t 5: The Courses ID\n");
 	printf("Enter your option: ");
 
+	// Get the option
 	scanf("%d",&input_option);
 	switch (input_option)
 	{
@@ -433,6 +435,8 @@ void update_student_by_roll(FIFO_Buf_st *students_queue)
 				{
 					// Get out form for loop
 					printf("\n[ERROR] This Roll Number %d is exist\n",input_new_roll);
+
+					// If we find a roll number match set flag
 					flag = 1;
 					break;
 				}
@@ -449,6 +453,7 @@ void update_student_by_roll(FIFO_Buf_st *students_queue)
 				}
 			}
 
+			// If the flag doesn't changed this mean that no roll number match
 			if(flag == 0)
 			{
 				update_student->roll_number = input_new_roll;
@@ -485,8 +490,124 @@ void update_student_by_roll(FIFO_Buf_st *students_queue)
 		default:
 			break;
 	}
+}
 
+// Update students and what we do in file
+void update_student_file(FIFO_Buf_st *students_queue)
+{
+	Item *student;
+	int i, j;
 
+	// Opening a update_students.txt file with w option to write in it
+	updated_students_file = fopen("update_students.txt", "w");
+
+	// Check if the file exist and there is data or not
+	if(students_file == NULL)
+	{
+		printf("\n [ERROR] update_students.txt create failed. \n");
+		printf("\n [ERROR] update students file failed. \n");
+		return;
+	}
+
+	student = students_queue->tail;
+	// Loop inside the queue
+	for (i = 0; i < students_queue->counter; ++i)
+	{
+		// Write into file
+		fprintf(updated_students_file, "%d ", student->roll_number);
+		fprintf(updated_students_file, "%s ", student->first_name);
+		fprintf(updated_students_file, "%s ", student->last_name);
+		fprintf(updated_students_file, "%0.1f ", student->GPA);
+
+		for(j = 0; j < COURSES_NUMBER ; ++j)
+		{
+			fprintf(updated_students_file, "%d ", student->course_id[j]);
+		}
+
+		// New line after every Item
+		fprintf(updated_students_file, "\n");
+
+		// Check if we reach the last item in the queue
+		if((student + 1) == (students_queue->base + students_queue->length))
+		{
+			student = students_queue->base;
+		}
+		else
+		{
+			// Just go to the next tail :D
+			student++;
+		}
+
+	}
+	printf("\n[INFO] Update Students details are saved in file successfully\n");
+
+	// Closing the file
+	fclose(updated_students_file);
+}
+
+// Enter student data form update file
+void add_student_from_update_file(FIFO_Buf_st *students_queue)
+{
+	Item new_student;
+	int i;
+
+	// Opening a update_students.txt file with option read
+	updated_students_file = fopen("update_students.txt", "r");
+
+	// Check if the file exist and there is data or not
+	if(updated_students_file == NULL)
+	{
+		printf("\n [ERROR] updated_students_file.txt file not found. \n");
+		printf("\n [ERROR] adding students from update file failed. \n");
+		return;
+	}
+
+	// Reading students until end of file this using of feof == Check end of file
+	while(!feof(updated_students_file))
+	{
+		// Reading roll number of the student
+		fscanf(updated_students_file, "%d", &new_student.roll_number);
+
+		// Check if the roll number is exists
+		if(search_student_by_roll(students_queue, new_student.roll_number) != NULL)
+		{
+			// Printing that we find a number with other student
+			printf("\n[ERROR] Roll number %d is already taken\n", new_student.roll_number);
+
+			// Ignore the rest of the line
+			fscanf(updated_students_file, "%*[^\n]");
+
+			// Start over form next line in text file
+			continue;
+		}
+
+		// Reading data first name, last name and GPA sequential
+		fscanf(updated_students_file, "%s", new_student.first_name);
+		fscanf(updated_students_file, "%s", new_student.last_name);
+		fscanf(updated_students_file, "%f", &new_student.GPA);
+
+		// Reading course IDs
+		for (i = 0; i < COURSES_NUMBER; ++i)
+		{
+			fscanf(updated_students_file, "%d", &new_student.course_id[i]);
+		}
+
+		// Enqueue new student
+		if((FIFO_enqueue(students_queue, new_student))== FIFO_NO_ERROR)
+		{
+			printf("\n[INFO] Roll number %d is saved successfully\n", new_student.roll_number);
+		}
+		else
+		{
+			printf("\n[ERROR] Adding students by update file failed\n");
+			return;
+		}
+	}
+
+	printf("\n[INFO] Students Recover are saved successfully\n");
+
+	// Closing the file
+	fclose(updated_students_file);
 }
 
 // Print all students in the queue
