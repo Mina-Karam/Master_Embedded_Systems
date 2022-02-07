@@ -1,4 +1,4 @@
-[![Lab 2](https://drive.google.com/uc?export=view&id=1_YGQ-gzeswWMduxpPEz-YbqObp3yRlcx)](https://drive.google.com/drive/folders/1x8UM7VACtKL4fIJMyl-nu5Hf6g8JdqNB)
+[![Lab 2](https://drive.google.com/uc?export=view&id=1TgJJ-YaLPtFsn_FiDXYZEizTMyVUcDT4)](https://drive.google.com/drive/folders/1x8UM7VACtKL4fIJMyl-nu5Hf6g8JdqNB)
 
 # Lab 2 [Screenshots](https://drive.google.com/drive/folders/1x8UM7VACtKL4fIJMyl-nu5Hf6g8JdqNB):
 
