@@ -66,10 +66,10 @@ int main(void)
 
 void delay(uint32_t count)
 {
-    vuint8_t i;
+    uint32_t i, j;
     
-    while(count--)
+    for(i = 0; i < delay; i++)
     {
-        for(i = 0; i < 255; i++);
+        for (j = 0; j < 255; j++);
     }
 }
