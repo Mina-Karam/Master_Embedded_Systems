@@ -7,28 +7,6 @@
 
 #include "lcd.h"
 
-void LCD_CLEAR_SCREEN(void)
-{
-	LCD_WRITE_COMMAND(LCD_CMD_CLEAR_SCREEN);
-}
-
-void LCD_KICK(void)
-{
-	LCD_CTRL &= ~(1<<E_PIN);
-	_delay_ms(50);
-	LCD_CTRL |=(1<<E_PIN);	
-}
-
-void LCD_ISBUSY(void)
-{
-	DataDir_LCD_PORT = 0x00; //	Input Mode
-	LCD_CTRL |= (1<<RW_PIN); // Read mode // ON
-	LCD_CTRL &= ~(1<<RS_PIN);// Read Mode // OFF
-	LCD_KICK();
-	DataDir_LCD_PORT = 0xFF;
-	LCD_CTRL &= ~(1<<RW_PIN);
-}
-
 void LCD_INIT(void)
 {
 	_delay_ms(20);
@@ -44,7 +22,8 @@ void LCD_INIT(void)
 	#endif
 	
 	#ifdef FOUR_BIT_MODE
-	
+		LCD_WRITE_COMMAND(0x02); // As datasheet
+		LCD_WRITE_COMMAND(LCD_CMD_FUNCTION_4BIT_2LINES);
 	#endif
 	
 	LCD_WRITE_COMMAND(LCD_CMD_ENTRY_MODE);
@@ -63,7 +42,13 @@ void LCD_WRITE_COMMAND(unsigned char command)
 	#endif
 	
 	#ifdef FOUR_BIT_MODE
-	
+		LCD_ISBUSY();
+		LCD_PORT = (LCD_PORT & 0x0F) | (command & 0xF0);
+		LCD_CTRL &= ~ ((1<<RW_PIN)|(1<<RS_PIN));
+		LCD_KICK();
+		LCD_PORT = (LCD_PORT & 0x0F) | (command << 4);
+		LCD_CTRL &= ~ ((1<<RW_PIN)|(1<<RS_PIN));
+		LCD_KICK();
 	#endif
 }
 
@@ -72,16 +57,22 @@ void LCD_WRITE_CHAR(unsigned char character)
 	#ifdef EIGHT_BIT_MODE
 		LCD_ISBUSY();
 		LCD_CTRL |= (1<<RS_PIN); // Turn RS ON for data mode
-		LCD_PORT = character;
+		LCD_PORT = (((character) << DATA_SHIFT));
 		LCD_CTRL |= (1<<RS_PIN); // Turn RS ON for data mode
 		LCD_CTRL &= ~(1<<RW_PIN); // Turn RW OFF for write mode
 		LCD_KICK();
 	#endif
 	
 	#ifdef FOUR_BIT_MODE
-	
+		LCD_PORT = (LCD_PORT & 0x0F) | (character & 0xF0);
+		LCD_CTRL |= (1<<RS_PIN); // Turn RS ON for data mode
+		LCD_CTRL &= ~(1<<RW_PIN); // Turn RW OFF for write mode
+		LCD_KICK();
+		LCD_PORT = (LCD_PORT & 0x0F) | (character << 4);
+		LCD_CTRL |= (1<<RS_PIN); // Turn RS ON for data mode
+		LCD_CTRL &= ~(1<<RW_PIN); // Turn RW OFF for write mode
+		LCD_KICK();
 	#endif
-	
 }
 
 void LCD_WRITE_STRING(char* string)
@@ -103,6 +94,28 @@ void LCD_WRITE_STRING(char* string)
 			count = 0;
 		}
 	}
+}
+
+void LCD_CLEAR_SCREEN(void)
+{
+	LCD_WRITE_COMMAND(LCD_CMD_CLEAR_SCREEN);
+}
+
+void LCD_KICK(void)
+{
+	LCD_CTRL &= ~(1<<E_PIN);
+	_delay_ms(50);
+	LCD_CTRL |=(1<<E_PIN);
+}
+
+void LCD_ISBUSY(void)
+{
+	DataDir_LCD_PORT = 0x00; //	Input Mode
+	LCD_CTRL |= (1<<RW_PIN); // Read mode // ON
+	LCD_CTRL &= ~(1<<RS_PIN);// Read Mode // OFF
+	LCD_KICK();
+	DataDir_LCD_PORT = 0xFF;
+	LCD_CTRL &= ~(1<<RW_PIN);
 }
 
 void LCD_GOTOXY(unsigned char line, unsigned char position)

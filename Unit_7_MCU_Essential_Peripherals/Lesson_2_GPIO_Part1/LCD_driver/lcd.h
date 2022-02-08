@@ -24,9 +24,25 @@
 #define	RW_PIN				2
 #define E_PIN				3
 
-#define EIGHT_BIT_MODE
-//#define FOUR_BIT_MODE
+#define DATA_SHIFT			0 // 0:4 bit date mode | 4:4 bit data mode
 
+//#define EIGHT_BIT_MODE
+#define FOUR_BIT_MODE
+
+// Options for LCD
+#define LCD_REGISTER_SELECT_PIN						(0)
+#define LCD_READ_WRITE_PIN							(1)
+#define LCD_ENABLE_PIN								(2)
+#define LCD_REGISTER_SELECT_ENABLE					(1)
+#define LCD_REGISTER_SELECT_DISABLE					(0)
+#define READ_FROM_LCD								(1)
+#define WRITE_TO_LCD								(0)
+#define LCD_ENABLE									(1)
+#define LCD_DISABLE									(0)
+#define LCD_FIRST_LINE								(0)
+#define LCD_SECOND_LINE								(1)
+
+// Commands of LCD
 #define LCD_CMD_FUNCTION_8BIT_2LINES   					(0x38)
 #define LCD_CMD_FUNCTION_4BIT_2LINES   					(0x28)
 #define LCD_CMD_MOVE_DISP_RIGHT       					(0x1C)
@@ -54,5 +70,6 @@ void LCD_WRITE_STRING(char* string);
 void LCD_ISBUSY(void);
 void LCD_CLEAR_SCREEN(void);
 void LCD_GOTOXY(unsigned char line, unsigned char position);
+void LCD_KICK(void);
 
 #endif /* LCD_H_ */
