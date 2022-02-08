@@ -88,3 +88,21 @@ void LCD_WRITE_STRING(char* string)
 {
 	
 }
+
+void LCD_GOTOXY(unsigned char line, unsigned char position)
+{
+	if (line == 0)
+	{
+		if (position < 16 && position >= 0)
+		{
+			LCD_WRITE_COMMAND(LCD_CMD_BEGIN_AT_FIRST_ROW + position);
+		}
+	}
+	else if (line == 1)
+	{
+		if (position < 16 && position >= 0)
+		{
+			LCD_WRITE_COMMAND(LCD_CMD_BEGIN_AT_SECOND_ROW + position);
+		}
+	}
+}
