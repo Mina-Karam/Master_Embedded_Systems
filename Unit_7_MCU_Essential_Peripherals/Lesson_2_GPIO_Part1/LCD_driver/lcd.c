@@ -86,7 +86,23 @@ void LCD_WRITE_CHAR(unsigned char character)
 
 void LCD_WRITE_STRING(char* string)
 {
+	int count = 0; // To count how much char on the line (it should be 16 char only)
 	
+	while (*string > 0)
+	{
+		count++;
+		LCD_WRITE_CHAR(*string++);
+		if (count == 16) // Go to the second line
+		{
+			LCD_GOTOXY(1,0); // Line 1 position 0
+		}
+		else if (count == 32 || count == 33) // Clear screen and show again
+		{
+			LCD_CLEAR_SCREEN();
+			LCD_GOTOXY(0,0); // Line 0 Position 0
+			count = 0;
+		}
+	}
 }
 
 void LCD_GOTOXY(unsigned char line, unsigned char position)

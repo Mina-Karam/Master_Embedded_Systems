@@ -12,7 +12,7 @@ int main(void)
 {
 	LCD_INIT();
 	
-	LCD_WRITE_CHAR('A');
+	LCD_WRITE_STRING("AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz");
 	while (1)
 	{
 		
