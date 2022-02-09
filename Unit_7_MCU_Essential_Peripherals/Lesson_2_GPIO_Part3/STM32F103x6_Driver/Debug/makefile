@@ -11,6 +11,7 @@ RM := rm -rf
 -include sources.mk
 -include Startup/subdir.mk
 -include Src/subdir.mk
+-include MCAL/GPIO/subdir.mk
 -include objects.mk
 
 ifneq ($(MAKECMDGOALS),clean)
@@ -62,8 +63,8 @@ all: main-build
 main-build: STM32F103C6_Driver.elf secondary-outputs
 
 # Tool invocations
-STM32F103C6_Driver.elf: $(OBJS) $(USER_OBJS) D:\My\ Projects\ARM\STM32F103C6_Driver\STM32F103C6TX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -gdwarf-2 -o "STM32F103C6_Driver.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"D:\My Projects\ARM\STM32F103C6_Driver\STM32F103C6TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F103C6_Driver.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+STM32F103C6_Driver.elf: $(OBJS) $(USER_OBJS) D:\Courses\ES_Online_Diploma_KS\Codes\Master_Embedded_System\Unit_7_MCU_Essential_Peripherals\Lesson_2_GPIO_Part3\STM32F103x6_Driver\STM32F103C6TX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -gdwarf-2 -o "STM32F103C6_Driver.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"D:\Courses\ES_Online_Diploma_KS\Codes\Master_Embedded_System\Unit_7_MCU_Essential_Peripherals\Lesson_2_GPIO_Part3\STM32F103x6_Driver\STM32F103C6TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F103C6_Driver.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
