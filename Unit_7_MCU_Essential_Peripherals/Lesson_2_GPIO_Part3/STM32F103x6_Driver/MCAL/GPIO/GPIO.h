@@ -26,10 +26,8 @@ typedef struct
 	uint8_t	 GPIO_MODE;			// Specifies the operating mode for the selected pins.
 								// This parameter must be set based on @ref GPIO_Mode_define
 
-
 	uint8_t	 GPIO_OUTPUT_SPEED;	// Specifies the speed for the selected pins.
 								// This parameter must be set based on @ref GPIO_SPEED_define
-
 }GPIO_PinConfig_t;
 
 //-----------------------------
@@ -56,7 +54,6 @@ typedef struct
 #define GPIO_PIN_16						((uint16_t)0xFFFF) /* All pins selected */
 
 #define GPIO_PIN_MASK					0x0000FFFFu /* PIN mask for assert test */
-
 
 //@ref GPIO_Mode_define
 //0: Analog mode

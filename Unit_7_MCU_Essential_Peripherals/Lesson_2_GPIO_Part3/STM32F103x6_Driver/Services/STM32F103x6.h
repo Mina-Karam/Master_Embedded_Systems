@@ -59,7 +59,7 @@ typedef struct
 	 vuint32_t APB2ENR;
 	 vuint32_t APB1ENR;
 	 vuint32_t BDCR;
-}RCC_Typedef;
+}RCC_TypeDef;
 
 //-*-*-*-*-*-*-*-*-*-*-*-
 //Peripheral register: GPIO
@@ -74,7 +74,7 @@ typedef struct
 	 vuint32_t BSRR;
 	 vuint32_t BRR;
 	 vuint32_t LCKR;
-}GPIO_Typedef;
+}GPIO_TypeDef;
 
 //-*-*-*-*-*-*-*-*-*-*-*-
 //Peripheral register: AFIO
@@ -90,7 +90,7 @@ typedef struct
 	 vuint32_t EXTICR3;
 	 uint32_t  RESERVED0;
 	 vuint32_t MAPR2;
-}AFIO_Typedef;
+}AFIO_TypeDef;
 
 //-*-*-*-*-*-*-*-*-*-*-*-
 //Peripheral register: EXTI
@@ -104,7 +104,7 @@ typedef struct
 	 vuint32_t FTSR;
 	 vuint32_t SWIER;
 	 vuint32_t PR;
-}EXTI_Typedef;
+}EXTI_TypeDef;
 
 //-*-*-*-*-*-*-*-*-*-*-*-
 //Peripheral Instants:
@@ -133,7 +133,6 @@ typedef struct
 #define RCC_GPIOE_CLK_EN()	(SET_BIT(RCC->APB2ENR,6))
 
 #define AFIO_CLK_EN()		(SET_BIT(RCC->APB2ENR,0))
-
 
 //-*-*-*-*-*-*-*-*-*-*-*-
 //Generic Macros:

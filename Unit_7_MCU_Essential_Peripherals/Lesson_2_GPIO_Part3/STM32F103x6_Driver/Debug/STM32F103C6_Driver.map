@@ -25,20 +25,46 @@ Discarded input sections
  .ARM.attributes
                 0x0000000000000000       0x1b c:/st/stm32cubeide_1.4.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.9-2020-q2-update.win32_2.0.0.202105311346/tools/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/crt0.o
  .group         0x0000000000000000        0xc ./MCAL/GPIO/GPIO.o
+ .group         0x0000000000000000        0xc ./MCAL/GPIO/GPIO.o
+ .group         0x0000000000000000        0xc ./MCAL/GPIO/GPIO.o
+ .group         0x0000000000000000        0xc ./MCAL/GPIO/GPIO.o
  .text          0x0000000000000000        0x0 ./MCAL/GPIO/GPIO.o
  .data          0x0000000000000000        0x0 ./MCAL/GPIO/GPIO.o
  .bss           0x0000000000000000        0x0 ./MCAL/GPIO/GPIO.o
- .debug_info    0x0000000000000000       0x21 ./MCAL/GPIO/GPIO.o
- .debug_abbrev  0x0000000000000000       0x13 ./MCAL/GPIO/GPIO.o
- .debug_aranges
+ .text.MCAL_GPIO_Init
+                0x0000000000000000       0x14 ./MCAL/GPIO/GPIO.o
+ .text.MCAL_GPIO_DeInit
+                0x0000000000000000       0x12 ./MCAL/GPIO/GPIO.o
+ .text.MCAL_GPIO_ReadPin
                 0x0000000000000000       0x18 ./MCAL/GPIO/GPIO.o
- .debug_macro   0x0000000000000000       0x11 ./MCAL/GPIO/GPIO.o
+ .text.MCAL_GPIO_ReadPort
+                0x0000000000000000       0x14 ./MCAL/GPIO/GPIO.o
+ .text.MCAL_GPIO_WritePin
+                0x0000000000000000       0x1a ./MCAL/GPIO/GPIO.o
+ .text.MCAL_GPIO_WritePort
+                0x0000000000000000       0x16 ./MCAL/GPIO/GPIO.o
+ .text.MCAL_GPIO_TogglePin
+                0x0000000000000000       0x16 ./MCAL/GPIO/GPIO.o
+ .text.MCAL_GPIO_LockPin
+                0x0000000000000000       0x18 ./MCAL/GPIO/GPIO.o
+ .debug_info    0x0000000000000000      0x338 ./MCAL/GPIO/GPIO.o
+ .debug_abbrev  0x0000000000000000       0xca ./MCAL/GPIO/GPIO.o
+ .debug_loc     0x0000000000000000      0x2e0 ./MCAL/GPIO/GPIO.o
+ .debug_aranges
+                0x0000000000000000       0x58 ./MCAL/GPIO/GPIO.o
+ .debug_ranges  0x0000000000000000       0x48 ./MCAL/GPIO/GPIO.o
+ .debug_macro   0x0000000000000000       0x42 ./MCAL/GPIO/GPIO.o
  .debug_macro   0x0000000000000000      0xaa2 ./MCAL/GPIO/GPIO.o
- .debug_line    0x0000000000000000       0x34 ./MCAL/GPIO/GPIO.o
- .debug_str     0x0000000000000000     0x2dcf ./MCAL/GPIO/GPIO.o
+ .debug_macro   0x0000000000000000       0x7c ./MCAL/GPIO/GPIO.o
+ .debug_macro   0x0000000000000000       0xac ./MCAL/GPIO/GPIO.o
+ .debug_macro   0x0000000000000000       0xd0 ./MCAL/GPIO/GPIO.o
+ .debug_line    0x0000000000000000      0x18f ./MCAL/GPIO/GPIO.o
+ .debug_str     0x0000000000000000     0x3a0e ./MCAL/GPIO/GPIO.o
  .comment       0x0000000000000000       0x54 ./MCAL/GPIO/GPIO.o
+ .debug_frame   0x0000000000000000      0x150 ./MCAL/GPIO/GPIO.o
  .ARM.attributes
-                0x0000000000000000       0x33 ./MCAL/GPIO/GPIO.o
+                0x0000000000000000       0x2d ./MCAL/GPIO/GPIO.o
+ .group         0x0000000000000000        0xc ./Src/main.o
  .group         0x0000000000000000        0xc ./Src/main.o
  .group         0x0000000000000000        0xc ./Src/main.o
  .group         0x0000000000000000        0xc ./Src/main.o
@@ -46,6 +72,8 @@ Discarded input sections
  .data          0x0000000000000000        0x0 ./Src/main.o
  .bss           0x0000000000000000        0x0 ./Src/main.o
  .debug_macro   0x0000000000000000      0xaa2 ./Src/main.o
+ .debug_macro   0x0000000000000000       0x7c ./Src/main.o
+ .debug_macro   0x0000000000000000       0xac ./Src/main.o
  .group         0x0000000000000000        0xc ./Src/syscalls.o
  .group         0x0000000000000000        0xc ./Src/syscalls.o
  .group         0x0000000000000000        0xc ./Src/syscalls.o
@@ -580,19 +608,18 @@ LOAD c:/st/stm32cubeide_1.4.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.exte
  .debug_ranges  0x0000000000000000       0x10 ./Src/main.o
  .debug_ranges  0x0000000000000010       0x20 ./Startup/startup_stm32f103c6tx.o
 
-.debug_macro    0x0000000000000000      0x15b
- .debug_macro   0x0000000000000000       0x33 ./Src/main.o
- .debug_macro   0x0000000000000033       0x7c ./Src/main.o
- .debug_macro   0x00000000000000af       0xac ./Src/main.o
+.debug_macro    0x0000000000000000      0x112
+ .debug_macro   0x0000000000000000       0x3c ./Src/main.o
+ .debug_macro   0x000000000000003c       0xd6 ./Src/main.o
 
-.debug_line     0x0000000000000000      0x187
- .debug_line    0x0000000000000000      0x103 ./Src/main.o
- .debug_line    0x0000000000000103       0x84 ./Startup/startup_stm32f103c6tx.o
+.debug_line     0x0000000000000000      0x220
+ .debug_line    0x0000000000000000      0x19c ./Src/main.o
+ .debug_line    0x000000000000019c       0x84 ./Startup/startup_stm32f103c6tx.o
 
-.debug_str      0x0000000000000000     0x34c4
- .debug_str     0x0000000000000000     0x3493 ./Src/main.o
-                                       0x34fc (size before relaxing)
- .debug_str     0x0000000000003493       0x31 ./Startup/startup_stm32f103c6tx.o
+.debug_str      0x0000000000000000     0x38b5
+ .debug_str     0x0000000000000000     0x3884 ./Src/main.o
+                                       0x38ed (size before relaxing)
+ .debug_str     0x0000000000003884       0x31 ./Startup/startup_stm32f103c6tx.o
                                          0xbc (size before relaxing)
 
 .comment        0x0000000000000000       0x53
