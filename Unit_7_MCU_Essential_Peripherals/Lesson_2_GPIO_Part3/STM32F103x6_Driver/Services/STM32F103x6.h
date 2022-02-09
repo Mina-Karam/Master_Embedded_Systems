@@ -31,18 +31,19 @@
 //Base addresses for AHB Peripherals
 //-----------------------------
 
-#define RCC_BASE            (AHBPERIPH_BASE + 0x00001000UL)
+#define RCC_BASE            (AHB_BUS_BASE + 0x00001000UL)
 
 //-----------------------------
 //Base addresses for APB2 Peripherals
 //-----------------------------
 
-#define AFIO_BASE           (APB2PERIPH_BASE + 0x00000000UL)
-#define EXTI_BASE           (APB2PERIPH_BASE + 0x00000400UL)
-#define GPIOA_BASE          (APB2PERIPH_BASE + 0x00000800UL)
-#define GPIOB_BASE          (APB2PERIPH_BASE + 0x00000C00UL)
-#define GPIOC_BASE          (APB2PERIPH_BASE + 0x00001000UL)
-#define GPIOD_BASE          (APB2PERIPH_BASE + 0x00001400UL)
+#define AFIO_BASE           (APB2_BUS_BASE + 0x00000000UL)
+#define EXTI_BASE           (APB2_BUS_BASE + 0x00000400UL)
+#define GPIOA_BASE          (APB2_BUS_BASE + 0x00000800UL)
+#define GPIOB_BASE          (APB2_BUS_BASE + 0x00000C00UL)
+#define GPIOC_BASE          (APB2_BUS_BASE + 0x00001000UL)
+#define GPIOD_BASE          (APB2_BUS_BASE + 0x00001400UL)
+#define GPIOE_BASE          (APB2_BUS_BASE + 0x00001800UL)
 
 //-*-*-*-*-*-*-*-*-*-*-*-
 //Peripheral register: RCC
@@ -59,7 +60,7 @@ typedef struct
 	 vuint32_t APB2ENR;
 	 vuint32_t APB1ENR;
 	 vuint32_t BDCR;
-}RCC_Typedef;
+}RCC_TypeDef;
 
 //-*-*-*-*-*-*-*-*-*-*-*-
 //Peripheral register: GPIO
@@ -74,7 +75,7 @@ typedef struct
 	 vuint32_t BSRR;
 	 vuint32_t BRR;
 	 vuint32_t LCKR;
-}GPIO_Typedef;
+}GPIO_TypeDef;
 
 //-*-*-*-*-*-*-*-*-*-*-*-
 //Peripheral register: AFIO
@@ -90,7 +91,7 @@ typedef struct
 	 vuint32_t EXTICR3;
 	 uint32_t  RESERVED0;
 	 vuint32_t MAPR2;
-}AFIO_Typedef;
+}AFIO_TypeDef;
 
 //-*-*-*-*-*-*-*-*-*-*-*-
 //Peripheral register: EXTI
@@ -104,23 +105,23 @@ typedef struct
 	 vuint32_t FTSR;
 	 vuint32_t SWIER;
 	 vuint32_t PR;
-}EXTI_Typedef;
+}EXTI_TypeDef;
 
 //-*-*-*-*-*-*-*-*-*-*-*-
 //Peripheral Instants:
 //-*-*-*-*-*-*-*-*-*-*-*
 
-#define GPIOA			((GPIO_Typedef*)GPIOA_BASE)
-#define GPIOB			((GPIO_Typedef*)GPIOB_BASE)
-#define GPIOC			((GPIO_Typedef*)GPIOC_BASE)
-#define GPIOD			((GPIO_Typedef*)GPIOD_BASE)
-#define GPIOE			((GPIO_Typedef*)GPIOE_BASE)
+#define GPIOA			((GPIO_TypeDef*)GPIOA_BASE)
+#define GPIOB			((GPIO_TypeDef*)GPIOB_BASE)
+#define GPIOC			((GPIO_TypeDef*)GPIOC_BASE)
+#define GPIOD			((GPIO_TypeDef*)GPIOD_BASE)
+#define GPIOE			((GPIO_TypeDef*)GPIOE_BASE)
 
-#define RCC				((GPIO_Typedef*)RCC_BASE)
+#define RCC				((RCC_TypeDef*)RCC_BASE)
 
-#define EXTI			((GPIO_Typedef*)EXTI_BASE)
+#define EXTI			((EXTI_TypeDef*)EXTI_BASE)
 
-#define AFIO			((GPIO_Typedef*)AFIO_BASE)
+#define AFIO			((AFIO_TypeDef*)AFIO_BASE)
 
 //-*-*-*-*-*-*-*-*-*-*-*-
 //clock enable Macros:
@@ -133,7 +134,6 @@ typedef struct
 #define RCC_GPIOE_CLK_EN()	(SET_BIT(RCC->APB2ENR,6))
 
 #define AFIO_CLK_EN()		(SET_BIT(RCC->APB2ENR,0))
-
 
 //-*-*-*-*-*-*-*-*-*-*-*-
 //Generic Macros:

@@ -49,4 +49,7 @@ typedef enum
 	InvalidArgument,    //in any configuration to Pins or Ports
 	OverFlow            //in any configuration to LEDs For Example
 }ErrorType;
+
+#define NULL ((void *)0)
+
 #endif /* PLATFORM_TYPES_H_ */
