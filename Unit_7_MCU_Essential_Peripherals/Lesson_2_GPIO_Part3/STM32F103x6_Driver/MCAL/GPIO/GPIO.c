@@ -285,24 +285,31 @@ void MCAL_GPIO_TogglePin(GPIO_TypeDef *GPIOx, uint16_t PinNumber)
 uint8_t MCAL_GPIO_LockPin(GPIO_TypeDef *GPIOx, uint16_t PinNumber)
 {
 	//Set LCKK[16]
-		volatile uint32_t temp = 1<<16;
-		//Set the LCKy
-		temp |= PinNumber;
+	volatile uint32_t temp = 1<<16;
 
-		//Write 1
-		GPIOx->LCKR = temp;
-		//Write 0
-		GPIOx->LCKR = PinNumber;
-		//Write 1
-		GPIOx->LCKR = temp;
-		//Read 0
-		temp = GPIOx->LCKR;
-		//Read 1 (this read is optional but confirms that the lock is active)
-		if((uint32_t)GPIOx->LCKR & 1<<16){
-			return GPIO_RETURN_LOCK_Enabled;
-		}
-		else{
-			return GPIO_RETURN_LOCK_ERROR;
-		}
+	//Set the LCKy
+	temp |= PinNumber;
+
+	//Write 1
+	GPIOx->LCKR = temp;
+
+	//Write 0
+	GPIOx->LCKR = PinNumber;
+
+	//Write 1
+	GPIOx->LCKR = temp;
+
+	//Read 0
+	temp = GPIOx->LCKR;
+
+	//Read 1 (this read is optional but confirms that the lock is active)
+	if((uint32_t)GPIOx->LCKR & 1<<16)
+	{
+		return GPIO_RETURN_LOCK_Enabled;
+	}
+	else
+	{
+		return GPIO_RETURN_LOCK_ERROR;
+	}
 }
 
