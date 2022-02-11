@@ -60,6 +60,7 @@ typedef struct
 	 vuint32_t APB2ENR;
 	 vuint32_t APB1ENR;
 	 vuint32_t BDCR;
+	 vuint32_t CSR;
 }RCC_TypeDef;
 
 //-*-*-*-*-*-*-*-*-*-*-*-
@@ -89,7 +90,7 @@ typedef struct
 	 vuint32_t EXTICR1;
 	 vuint32_t EXTICR2;
 	 vuint32_t EXTICR3;
-	 uint32_t  RESERVED0;
+	 uint32_t  RESERVED_0;
 	 vuint32_t MAPR2;
 }AFIO_TypeDef;
 

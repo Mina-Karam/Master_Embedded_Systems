@@ -21,7 +21,9 @@ OBJCOPY_BIN :=
 
 # Every subdirectory with source files must be described here
 SUBDIRS := \
-HAL/LED \
+HAL/Keypad \
+HAL/LCD \
+HAL/S7_Segment \
 MCAL/GPIO \
 Src \
 Startup \

@@ -1,4 +1,6 @@
-"./HAL/LED/LED.o"
+"./HAL/Keypad/Keypad.o"
+"./HAL/LCD/LCD.o"
+"./HAL/S7_Segment/S7_Segment.o"
 "./MCAL/GPIO/GPIO.o"
 "./Src/main.o"
 "./Src/syscalls.o"

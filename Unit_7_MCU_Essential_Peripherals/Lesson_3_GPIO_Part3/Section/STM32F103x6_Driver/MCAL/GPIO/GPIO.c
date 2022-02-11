@@ -78,6 +78,7 @@ static uint8_t Get_CRLH_Position(uint16_t PinNumber)
 	default:
 		break;
 	}
+	return 0;
 }
 
 /**================================================================
