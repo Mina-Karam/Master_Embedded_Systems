@@ -31,7 +31,4 @@
 void HAL_KEYPAD_INIT(void);
 char HAL_KEYPAD_GET_KEY(void);
 
-/* ============= Global Variable ================= */
-GPIO_PinConfig_t PinConfig;
-
 #endif /* KEYPAD_KEYPAD_H_ */

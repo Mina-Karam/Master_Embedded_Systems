@@ -26,20 +26,7 @@
 #define EIGHT_BIT_MODE
 //#define FOUR_BIT_MODE
 
-#define DATA_shift 4 // 0:8 bit date mode | 4:4 bit data mode
-
-/* ============= LCD Options ================== */
-#define LCD_REGISTER_SELECT_PIN						(0)
-#define LCD_READ_WRITE_PIN							(1)
-#define LCD_ENABLE_PIN								(2)
-#define LCD_REGISTER_SELECT_ENABLE					(1)
-#define LCD_REGISTER_SELECT_DISABLE					(0)
-#define READ_FROM_LCD								(1)
-#define WRITE_TO_LCD								(0)
-#define LCD_ENABLE									(1)
-#define LCD_DISABLE									(0)
-#define LCD_FIRST_LINE								(0)
-#define LCD_SECOND_LINE								(1)
+#define DATA_shift 0 // 0:8 bit date mode | 4:4 bit data mode
 
 /* ============= LCD Commands ================== */
 #define LCD_CMD_FUNCTION_8BIT_2LINES   					(0x38)
@@ -68,10 +55,8 @@ void HAL_LCD_WRITE_COMMAND(uint8_t command);
 void HAL_LCD_WRITE_CHAR(uint8_t character);
 void HAL_LCD_WRITE_STRING(char* string);
 void HAL_LCD_ISBUSY(void);
-void HAL_LCD_KICK(void);
 void HAL_LCD_CLEAR_SCREEN(void);
 void HAL_LCD_GOTO_XY(uint8_t line, uint8_t position);
-void HAL_LCD_KICK(void);
 //void HAL_LCD_custom_characters(void);
 
 

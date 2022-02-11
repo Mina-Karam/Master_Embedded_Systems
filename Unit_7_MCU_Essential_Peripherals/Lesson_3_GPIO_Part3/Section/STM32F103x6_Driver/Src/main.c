@@ -28,9 +28,8 @@ int main(void)
 
 	// Initializing the 7-segment
 	HAL_7_segment_init();
-
-	HAL_LCD_WRITE_STRING("HEY THERE !");
-	delay_ms(500);
+	HAL_LCD_WRITE_STRING("HEY THERE !        Mina Karam");
+	delay_ms(30);
 	HAL_LCD_CLEAR_SCREEN();
 
 	// Variable to check pressed key of Keypad
@@ -52,7 +51,7 @@ int main(void)
 		// Display current number on the LCD
 		HAL_LCD_WRITE_CHAR(LCD_Numbers[i]);
 		// Delay to be able to see the change in numbers
-		delay_ms(200);  // 1 second delay
+		delay_ms(100);  // delay
 	}
 
 	// Clear screen after displaying Numbers
@@ -61,8 +60,8 @@ int main(void)
 	// Initializing the Keypad
 	HAL_KEYPAD_INIT();
 
-	HAL_LCD_WRITE_STRING("Keypad is ready !");
-	delay_ms(500);
+	HAL_LCD_WRITE_STRING("Keypad is ready!");
+	delay_ms(30);
 	HAL_LCD_CLEAR_SCREEN();
 
 	while(1)
@@ -71,16 +70,16 @@ int main(void)
 
 		switch(pressed_key)
 		{
-		case 'A':
-			break;
+			case 'A':
+				break;
 
-		case '?':
-			HAL_LCD_CLEAR_SCREEN();
-			break;
+			case '?':
+				HAL_LCD_CLEAR_SCREEN();
+				break;
 
-		default:
-			HAL_LCD_WRITE_CHAR(pressed_key);
-			break;
+			default:
+				HAL_LCD_WRITE_CHAR(pressed_key);
+				break;
 		}
 	}
 }

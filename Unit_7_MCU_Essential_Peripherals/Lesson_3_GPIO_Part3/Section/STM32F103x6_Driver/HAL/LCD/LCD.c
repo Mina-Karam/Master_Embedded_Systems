@@ -12,6 +12,8 @@
 /* ========== Private Functions ============= */
 /* ========================================== */
 
+static void HAL_LCD_KICK(void);
+
 // Function to make delay_ms 1ms
 static void delay_ms(uint32_t delay)
 {
@@ -107,7 +109,7 @@ void HAL_LCD_CLEAR_SCREEN(void)
 }
 
 // Kick Start
-void HAL_LCD_KICK(void)
+static void HAL_LCD_KICK(void)
 {
 	// Set Enable bit
 	MCAL_GPIO_WritePin(LCD_CTRL, EN_SWITCH, GPIO_PIN_SET);
@@ -259,15 +261,18 @@ void HAL_LCD_WRITE_CHAR(uint8_t character)
 {
 #ifdef EIGHT_BIT_MODE
 	/* ====== LCD is in 8 bit Mode ====== */
+	// Turn RS on for data mode
+	//MCAL_GPIO_WritePin(LCD_CTRL, RS_SWITCH, GPIO_PIN_SET);
 
 	// Set LCD Port using character variable
 	MCAL_GPIO_WritePort(LCD_CTRL, character);
 
-	// Turn RS off for data mode
+	// Turn RW off so you can write
 	MCAL_GPIO_WritePin(LCD_CTRL, RW_SWITCH, GPIO_PIN_RESET);
 
-	// Turn RW off so you can write
-	MCAL_GPIO_WritePin(LCD_CTRL, RS_SWITCH, GPIO_PIN_RESET);
+	// Turn RS on for data mode
+	MCAL_GPIO_WritePin(LCD_CTRL, RS_SWITCH, GPIO_PIN_SET);
+
 
 	delay_ms(1);
 	HAL_LCD_KICK();
@@ -319,17 +324,17 @@ void HAL_LCD_WRITE_STRING(char* string)
 /*
 void HAL_LCD_custom_characters(void)
 {
-	LCD_write_command(64);
-	LCD_write_char(0);
-	LCD_write_char(14);
-	LCD_write_char(17);
-	LCD_write_char(2);
-	LCD_write_char(4);
-	LCD_write_char(4);
-	LCD_write_char(0);
-	LCD_write_char(4);
-	LCD_write_command(LCD_BEGIN_AT_FIRST_ROW);
-	LCD_write_char(0);
+	HAL_LCD_WRITE_COMMAND(64);
+	HAL_LCD_WRITE_CHAR(0);
+	HAL_LCD_WRITE_CHAR(14);
+	HAL_LCD_WRITE_CHAR(17);
+	HAL_LCD_WRITE_CHAR(2);
+	HAL_LCD_WRITE_CHAR(4);
+	HAL_LCD_WRITE_CHAR(4);
+	HAL_LCD_WRITE_CHAR(0);
+	HAL_LCD_WRITE_CHAR(4);
+	HAL_LCD_WRITE_COMMAND(LCD_CMD_BEGIN_AT_FIRST_ROW);
+	HAL_LCD_WRITE_CHAR(0);
 	delay_ms(10);
 }
 */

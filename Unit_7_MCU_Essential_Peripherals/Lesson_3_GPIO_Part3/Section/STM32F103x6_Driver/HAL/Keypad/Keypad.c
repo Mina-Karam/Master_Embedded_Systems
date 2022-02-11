@@ -18,6 +18,8 @@ void HAL_KEYPAD_INIT(void)
 {
 	// ALL ROWS and COLUMNS are OUTPUT
 
+	GPIO_PinConfig_t PinConfig;
+
 	PinConfig.GPIO_PinNumber = R0;
 	PinConfig.GPIO_MODE = GPIO_MODE_OUTPUT_PP;
 	PinConfig.GPIO_OUTPUT_SPEED = GPIO_SPEED_10M;
