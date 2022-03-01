@@ -9,11 +9,11 @@
 /* ============= Includes ================ */
 /* ======================================= */
 
-#include "04_EXTI_Test_1_LCD_Push_Button.h"
+#include "05_USART_Test_1_Debugging_Using_Polling.h"
 
 /* =========== Main Program ========== */
 int main(void)
 {
-	EXTI_Test_1_LCD_Push_Button();
+	USART_Test_1_Debugging_Using_Polling();
 	return 0;
 }

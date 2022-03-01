@@ -97,17 +97,17 @@ typedef struct
  * ===============================================
  */
 
-void MCAL_GPIO_Init (GPIO_TypeDef *GPIOx, GPIO_PinConfig_t *PinConfig);
-void MCAL_GPIO_DeInit(GPIO_TypeDef *GPIOx);
+void MCAL_GPIO_Init (GPIO_Typedef_t *GPIOx, GPIO_PinConfig_t *PinConfig);
+void MCAL_GPIO_DeInit(GPIO_Typedef_t *GPIOx);
 
-uint8_t MCAL_GPIO_ReadPin(GPIO_TypeDef *GPIOx, uint16_t PinNumber);
-uint16_t MCAL_GPIO_ReadPort(GPIO_TypeDef *GPIOx);
+uint8_t MCAL_GPIO_ReadPin(GPIO_Typedef_t *GPIOx, uint16_t PinNumber);
+uint16_t MCAL_GPIO_ReadPort(GPIO_Typedef_t *GPIOx);
 
-void MCAL_GPIO_WritePin(GPIO_TypeDef *GPIOx, uint16_t PinNumber, uint8_t Value);
-void MCAL_GPIO_WritePort(GPIO_TypeDef *GPIOx, uint16_t Value);
+void MCAL_GPIO_WritePin(GPIO_Typedef_t *GPIOx, uint16_t PinNumber, uint8_t Value);
+void MCAL_GPIO_WritePort(GPIO_Typedef_t *GPIOx, uint16_t Value);
 
-void MCAL_GPIO_TogglePin(GPIO_TypeDef *GPIOx, uint16_t PinNumber);
+void MCAL_GPIO_TogglePin(GPIO_Typedef_t *GPIOx, uint16_t PinNumber);
 
-uint8_t MCAL_GPIO_LockPin(GPIO_TypeDef *GPIOx, uint16_t PinNumber);
+uint8_t MCAL_GPIO_LockPin(GPIO_Typedef_t *GPIOx, uint16_t PinNumber);
 
 #endif /* GPIO_STM32F103X6_GPIO_DRIVER_H_ */

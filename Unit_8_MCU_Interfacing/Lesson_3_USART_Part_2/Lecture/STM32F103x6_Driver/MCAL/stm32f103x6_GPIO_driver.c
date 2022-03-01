@@ -91,7 +91,7 @@ static uint8_t Get_CRLH_Position(uint16_t PinNumber)
  * Note				- Stm32F103C6 MCU has GPIO A, B, C, D, E Modules
  * 					  But LQFP48 Package has only GPIO A, B, PART of C/D exported as external PINs from the Module
  */
-void MCAL_GPIO_Init (GPIO_TypeDef *GPIOx, GPIO_PinConfig_t *PinConfig)
+void MCAL_GPIO_Init (GPIO_Typedef_t *GPIOx, GPIO_PinConfig_t *PinConfig)
 {
 	//Port configuration register low (GPIOx_CRL)  0 >>> 7
 	//Port configuration register high (GPIOx_CRH) 8 >>> 15
@@ -152,7 +152,7 @@ void MCAL_GPIO_Init (GPIO_TypeDef *GPIOx, GPIO_PinConfig_t *PinConfig)
  * @retval 			- None
  * Note				- None
  */
-void MCAL_GPIO_DeInit(GPIO_TypeDef *GPIOx)
+void MCAL_GPIO_DeInit(GPIO_Typedef_t *GPIOx)
 {
 	//	GPIOx->CRL = 0x44444444;
 	//	GPIOx->CRH = 0x44444444;
@@ -199,7 +199,7 @@ void MCAL_GPIO_DeInit(GPIO_TypeDef *GPIOx)
  * @retval 			- The input pin value (two values based on @ref GPIO_PIN_state)
  * Note				- None
  */
-uint8_t MCAL_GPIO_ReadPin(GPIO_TypeDef *GPIOx, uint16_t PinNumber)
+uint8_t MCAL_GPIO_ReadPin(GPIO_Typedef_t *GPIOx, uint16_t PinNumber)
 {
 	uint8_t bit_status;
 	if(((GPIOx->IDR) & PinNumber) != GPIO_PIN_RESET)
@@ -220,7 +220,7 @@ uint8_t MCAL_GPIO_ReadPin(GPIO_TypeDef *GPIOx, uint16_t PinNumber)
  * @retval 			- The input port value
  * Note				- None
  */
-uint16_t MCAL_GPIO_ReadPort(GPIO_TypeDef *GPIOx)
+uint16_t MCAL_GPIO_ReadPort(GPIO_Typedef_t *GPIOx)
 {
 	return (uint16_t)(GPIOx->IDR);
 }
@@ -234,7 +234,7 @@ uint16_t MCAL_GPIO_ReadPort(GPIO_TypeDef *GPIOx)
  * @retval 			- None
  * Note				- None
  */
-void MCAL_GPIO_WritePin(GPIO_TypeDef *GPIOx, uint16_t PinNumber, uint8_t Value)
+void MCAL_GPIO_WritePin(GPIO_Typedef_t *GPIOx, uint16_t PinNumber, uint8_t Value)
 {
 	if (Value != GPIO_PIN_RESET)
 	{
@@ -256,7 +256,7 @@ void MCAL_GPIO_WritePin(GPIO_TypeDef *GPIOx, uint16_t PinNumber, uint8_t Value)
  * @retval 			- None
  * Note				- None
  */
-void MCAL_GPIO_WritePort(GPIO_TypeDef *GPIOx, uint16_t Value)
+void MCAL_GPIO_WritePort(GPIO_Typedef_t *GPIOx, uint16_t Value)
 {
 	GPIOx->ODR = (uint32_t)Value;
 }
@@ -269,7 +269,7 @@ void MCAL_GPIO_WritePort(GPIO_TypeDef *GPIOx, uint16_t Value)
  * @retval 			- None
  * Note				- None
  */
-void MCAL_GPIO_TogglePin(GPIO_TypeDef *GPIOx, uint16_t PinNumber)
+void MCAL_GPIO_TogglePin(GPIO_Typedef_t *GPIOx, uint16_t PinNumber)
 {
 	GPIOx->ODR ^= (PinNumber);
 
@@ -283,7 +283,7 @@ void MCAL_GPIO_TogglePin(GPIO_TypeDef *GPIOx, uint16_t PinNumber)
  * @retval 			- OK if pin configure is locked Or ERROR if pin is not locked (OK & ERROR are defined @ref GPIO_RETURN_LOCK)
  * Note				- None
  */
-uint8_t MCAL_GPIO_LockPin(GPIO_TypeDef *GPIOx, uint16_t PinNumber)
+uint8_t MCAL_GPIO_LockPin(GPIO_Typedef_t *GPIOx, uint16_t PinNumber)
 {
 	//Set LCKK[16]
 	volatile uint32_t temp = 1<<16;

@@ -2,33 +2,37 @@
  * STM32F103x6.h
  *
  *  Created on: Feb 9, 2022
- *      Author: Mina Karam
+ *      Author: Mina-Karam
  */
 
 #ifndef STM32F103X6_H_
 #define STM32F103X6_H_
 
-//-----------------------------
-//Includes
-//-----------------------------
+/* ================================================================ */
+/* =========================== Includes =========================== */
+/* ================================================================ */
 
 #include "Platform_Types.h"
 #include "Util.h"
 
-//-----------------------------
-//Base addresses for Memories
-//-----------------------------
+/* ================================================================ */
+/* ================= Base Addresses of Memories =================== */
+/* ================================================================ */
 
-#define FLASH_BASE 			0x08000000UL
-#define SRAM_BASE			0x20000000UL
-#define PERIPHERALS_BASE	0x40000000UL
+#define FLASH_BASE 			((uint32_t)0x08000000)	/* FLASH base address in the alias region */
+#define SRAM_BASE			((uint32_t)0x20000000)	/* SRAM base address in the alias region */
+#define PERIPHERALS_BASE	((uint32_t)0x40000000)	/* Peripheral base address in the alias region */
+
 
 #define APB1_BUS_BASE     	(PERIPHERALS_BASE)
-#define APB2_BUS_BASE     	(PERIPHERALS_BASE + 0x00010000UL)
-#define AHB_BUS_BASE      	(PERIPHERALS_BASE + 0x00020000UL)
+#define APB2_BUS_BASE     	(PERIPHERALS_BASE + 0x10000)
+#define AHB_BUS_BASE      	(PERIPHERALS_BASE + 0x20000)
 
-// NVIC ( Non-Vectored Interrupt Controller )
-#define NVIC_BASE_ADDRESS	0xE000E100UL
+//-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+// NVIC (Non-Vectored Interrupt Controller)
+//-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+#define NVIC_BASE_ADDRESS	((uint32_t)0xE000E100)
+
 #define NVIC_ISER0			*(volatile uint32_t *)(NVIC_BASE_ADDRESS + 0x00)
 #define NVIC_ISER1			*(volatile uint32_t *)(NVIC_BASE_ADDRESS + 0x04)
 #define NVIC_ISER2			*(volatile uint32_t *)(NVIC_BASE_ADDRESS + 0x08)
@@ -36,105 +40,144 @@
 #define NVIC_ICER1			*(volatile uint32_t *)(NVIC_BASE_ADDRESS + 0x84)
 #define NVIC_ICER2			*(volatile uint32_t *)(NVIC_BASE_ADDRESS + 0x88)
 
-//-----------------------------
-//Base addresses for AHB Peripherals
-//-----------------------------
+/* ================================================================ */
+/* ====== AHBx and APBx Bus Peripheral Base Addresses ============= */
+/* ================================================================ */
 
-#define RCC_BASE            (AHB_BUS_BASE + 0x00001000UL)
+//-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+// Base addresses for AHB Peripherals
+//-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
 
-//-----------------------------
-//Base addresses for APB2 Peripherals
-//-----------------------------
+#define RCC_BASE            (AHB_BUS_BASE + 0x1000)
 
-#define AFIO_BASE           (APB2_BUS_BASE + 0x00000000UL)
-#define EXTI_BASE           (APB2_BUS_BASE + 0x00000400UL)
-#define GPIOA_BASE          (APB2_BUS_BASE + 0x00000800UL)
-#define GPIOB_BASE          (APB2_BUS_BASE + 0x00000C00UL)
-#define GPIOC_BASE          (APB2_BUS_BASE + 0x00001000UL)
-#define GPIOD_BASE          (APB2_BUS_BASE + 0x00001400UL)
-#define GPIOE_BASE          (APB2_BUS_BASE + 0x00001800UL)
+//-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+// Base addresses for APB2 Peripherals
+//-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
 
-//-*-*-*-*-*-*-*-*-*-*-*-
-//Peripheral register: RCC
-//-*-*-*-*-*-*-*-*-*-*-*
+#define AFIO_BASE           (APB2_BUS_BASE + 0x0000)
 
-typedef struct
-{
-	 vuint32_t CR;
-	 vuint32_t CFGR;
-	 vuint32_t CIR;
-	 vuint32_t APB2RSTR;
-	 vuint32_t APB1RSTR;
-	 vuint32_t AHBENR;
-	 vuint32_t APB2ENR;
-	 vuint32_t APB1ENR;
-	 vuint32_t BDCR;
-	 vuint32_t CSR;
-}RCC_TypeDef;
+#define EXTI_BASE           (APB2_BUS_BASE + 0x0400)
 
-//-*-*-*-*-*-*-*-*-*-*-*-
-//Peripheral register: GPIO
-//-*-*-*-*-*-*-*-*-*-*-*
+#define GPIOA_BASE          (APB2_BUS_BASE + 0x0800)
+#define GPIOB_BASE          (APB2_BUS_BASE + 0x0C00)
+#define GPIOC_BASE          (APB2_BUS_BASE + 0x1000)
+#define GPIOD_BASE          (APB2_BUS_BASE + 0x1400)
+#define GPIOE_BASE          (APB2_BUS_BASE + 0x1800)
 
-typedef struct
-{
-	 vuint32_t CRL;
-	 vuint32_t CRH;
-	 vuint32_t IDR;
-	 vuint32_t ODR;
-	 vuint32_t BSRR;
-	 vuint32_t BRR;
-	 vuint32_t LCKR;
-}GPIO_TypeDef;
+#define USART1_BASE         (APB2_BUS_BASE + 0x3800)
 
-//-*-*-*-*-*-*-*-*-*-*-*-
-//Peripheral register: AFIO
-//-*-*-*-*-*-*-*-*-*-*-*
+//-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+// Base addresses for APB1 Peripherals
+//-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+
+#define USART2_BASE         (APB1_BUS_BASE + 0x4400)
+#define USART3_BASE         (APB1_BUS_BASE + 0x4800)
+
+/* ================================================================ */
+/* ===== Peripheral Register Type Definitions (Structures)========= */
+/* ================================================================ */
+
+//-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+// Peripheral register: RCC
+//-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
 
 typedef struct
 {
-	 vuint32_t EVCR;
-	 vuint32_t MAPR;
-	 vuint32_t EXTICR[4];
-	 uint32_t  RESERVED_0;
-	 vuint32_t MAPR2;
-}AFIO_TypeDef;
+	 vuint32_t CR; 				/* Clock control register, 					Address offset: 0x00 */
+	 vuint32_t CFGR;			/* Clock configuration register, 			Address offset: 0x04 */
+	 vuint32_t CIR;				/* Clock interrupt register, 				Address offset: 0x08 */
+	 vuint32_t APB2RSTR;		/* APB2 peripheral reset register, 			Address offset: 0x0C */
+	 vuint32_t APB1RSTR;		/* APB1 peripheral reset register, 			Address offset: 0x10 */
+	 vuint32_t AHBENR;			/* AHB peripheral clock enable register, 	Address offset: 0x14 */
+	 vuint32_t APB2ENR;			/* APB2 peripheral clock enable register, 	Address offset: 0x18 */
+	 vuint32_t APB1ENR;			/* APB1 peripheral clock enable register, 	Address offset: 0x1C */
+	 vuint32_t BDCR;			/* Backup domain control register, 			Address offset: 0x20 */
+	 vuint32_t CSR;				/* Control/status register, 				Address offset: 0x24 */
+}RCC_Typedef_t;
 
-//-*-*-*-*-*-*-*-*-*-*-*-
-//Peripheral register: EXTI
-//-*-*-*-*-*-*-*-*-*-*-*
+//-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+// Peripheral register: GPIO
+//-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
 
 typedef struct
 {
-	 vuint32_t IMR;
-	 vuint32_t EMR;
-	 vuint32_t RTSR;
-	 vuint32_t FTSR;
-	 vuint32_t SWIER;
-	 vuint32_t PR;
-}EXTI_TypeDef;
+	 vuint32_t CRL;				/* Port configuration register low, 		Address offset: 0x00 */
+	 vuint32_t CRH;				/* Port configuration register high, 		Address offset: 0x04 */
+	 vuint32_t IDR;				/* Port input data register, 				Address offset: 0x08 */
+	 vuint32_t ODR;				/* Port output data register, 				Address offset: 0x0C */
+	 vuint32_t BSRR;			/* Port bit set/reset register, 			Address offset: 0x10 */
+	 vuint32_t BRR;				/* Port bit reset register, 				Address offset: 0x14 */
+	 vuint32_t LCKR;			/* Port configuration lock register, 		Address offset: 0x18 */
+}GPIO_Typedef_t;
 
-//-*-*-*-*-*-*-*-*-*-*-*-
-//Peripheral Instants:
-//-*-*-*-*-*-*-*-*-*-*-*
+//-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+// Peripheral register: AFIO
+//-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
 
-#define GPIOA			((GPIO_TypeDef*)GPIOA_BASE)
-#define GPIOB			((GPIO_TypeDef*)GPIOB_BASE)
-#define GPIOC			((GPIO_TypeDef*)GPIOC_BASE)
-#define GPIOD			((GPIO_TypeDef*)GPIOD_BASE)
-#define GPIOE			((GPIO_TypeDef*)GPIOE_BASE)
+typedef struct
+{
+	 vuint32_t EVCR;			/* Event control register, 							Address offset: 0x00 */
+	 vuint32_t MAPR;			/* AF re-map and debug I/O configuration register, 	Address offset: 0x04 */
+	 vuint32_t EXTICR[4];		/* External interrupt configuration register, 		Address offset: 0x08 - 0x14 */
+	 uint32_t  RESERVED_0;		/* Clock control register, 							Address offset: 0x18 */
+	 vuint32_t MAPR2;			/* AF re-map and debug I/O configuration register 2,Address offset: 0x1C */
+}AFIO_Typedef_t;
 
-#define RCC				((RCC_TypeDef*)RCC_BASE)
+//-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+// Peripheral register: EXTI
+//-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
 
-#define EXTI			((EXTI_TypeDef*)EXTI_BASE)
+typedef struct
+{
+	 vuint32_t IMR;				/* Interrupt mask register, 				Address offset: 0x00 */
+	 vuint32_t EMR;				/* Event mask register, 					Address offset: 0x04 */
+	 vuint32_t RTSR;			/* Rising trigger selection register, 		Address offset: 0x08 */
+	 vuint32_t FTSR;			/* Falling trigger selection register, 		Address offset: 0x0C */
+	 vuint32_t SWIER;			/* Software interrupt event register, 		Address offset: 0x10 */
+	 vuint32_t PR;				/* Pending register, 						Address offset: 0x14 */
+}EXTI_Typedef_t;
 
-#define AFIO			((AFIO_TypeDef*)AFIO_BASE)
+//-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+// Peripheral register: USART
+//-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
 
-//-*-*-*-*-*-*-*-*-*-*-*-
-//clock enable Macros:
-//-*-*-*-*-*-*-*-*-*-*-*
+typedef struct
+{
+	 vuint32_t SR;				/* Status register, 						Address offset: 0x00 */
+	 vuint32_t DR;				/* Data register , 							Address offset: 0x04 */
+	 vuint32_t BRR;				/* Baud rate register, 						Address offset: 0x08 */
+	 vuint32_t CR1;				/* Control register 1, 						Address offset: 0x0C */
+	 vuint32_t CR2;				/* Control register 2, 						Address offset: 0x10 */
+	 vuint32_t CR3;				/* Control register 3, 						Address offset: 0x14 */
+	 vuint32_t GTPR;			/* Guard time and pre-scaler register, 		Address offset: 0x18 */
+}USART_Typedef_t;
+
+/* ================================================================ */
+/* =================== Peripheral Instants  ======================= */
+/* ================================================================ */
+
+#define GPIOA			((GPIO_Typedef_t*)GPIOA_BASE)
+#define GPIOB			((GPIO_Typedef_t*)GPIOB_BASE)
+#define GPIOC			((GPIO_Typedef_t*)GPIOC_BASE)
+#define GPIOD			((GPIO_Typedef_t*)GPIOD_BASE)
+#define GPIOE			((GPIO_Typedef_t*)GPIOE_BASE)
+
+#define RCC				((RCC_Typedef_t*)RCC_BASE)
+
+#define EXTI			((EXTI_Typedef_t*)EXTI_BASE)
+
+#define AFIO			((AFIO_Typedef_t*)AFIO_BASE)
+
+#define USART1			((USART_Typedef_t*)USART1_BASE)
+#define USART2			((USART_Typedef_t*)USART2_BASE)
+#define USART3			((USART_Typedef_t*)USART3_BASE)
+
+/* ================================================================ */
+/* =========== Clock Enable/Disable/Reset Macros ================== */
+/* ================================================================ */
+
 /*
- * Enable clock for Ports A, B, C, D, E
+ * Enable clock
  */
 #define RCC_GPIOA_CLK_EN()	(RCC->APB2ENR |= 1 << 2)  //IOPA enable is in bit 2
 #define RCC_GPIOB_CLK_EN()	(RCC->APB2ENR |= 1 << 3)  //IOPB enable is in bit 3
@@ -144,9 +187,23 @@ typedef struct
 
 #define RCC_AFIO_CLK_EN()	(RCC->APB2ENR |= 1 << 0)  //AFIO enable is in bit 0
 
-//-*-*-*-*-*-*-*-*-*-*-*-
-//Interrupt Vector Table:
-//-*-*-*-*-*-*-*-*-*-*-*
+#define RCC_USART1_CLK_EN()	(RCC->APB2ENR |= 1 << 14) //USART1 enable is in bit 14
+#define RCC_USART2_CLK_EN()	(RCC->APB1ENR |= 1 << 17) //USART1 enable is in bit 17
+#define RCC_USART3_CLK_EN()	(RCC->APB1ENR |= 1 << 18) //USART1 enable is in bit 18
+
+
+/*
+ * Disable clock
+ */
+#define RCC_USART1_CLK_DI()	(RCC->APB2RSTR |= 1 << 14) //USART1 disable is in bit 14
+#define RCC_USART2_CLK_DI()	(RCC->APB1RSTR |= 1 << 17) //USART1 disable is in bit 17
+#define RCC_USART3_CLK_DI()	(RCC->APB1RSTR |= 1 << 18) //USART1 disable is in bit 18
+
+
+/* ================================================================ */
+/* ================= Interrupt Vector Table ======================= */
+/* ================================================================ */
+
 /*
  * EXTI
  */
@@ -167,6 +224,13 @@ typedef struct
 #define EXTI14_IRQ		40
 #define EXTI15_IRQ		40
 
+/*
+ * USART
+ */
+#define USART1_IRQ		37
+#define USART2_IRQ		38
+#define USART3_IRQ		39
+
 //-*-*-*-*-*-*-*-*-*-*-*--*-*-*--*-*-*-
 //NVIC IRQ Enable/Disable Macros
 //-*-*-*-*-*-*-*-*-*-*-*-*-*-*--*-*-*-
@@ -185,7 +249,11 @@ typedef struct
 
 // 40 - 32 = 8
 #define NVIC_IRQ40_EXTI10_15_EN()		(NVIC_ISER1 |= 1<<8)				// EXTI10, EXTI11, EXTI12, EXTI13, EXTI14, EXTI15
+																			//  ---> PIN40 in NVIC
 
+#define NVIC_IRQ37_USART1_EN()			(NVIC_ISER1 |= 1<<(USART1_IRQ - 32))// USART1
+#define NVIC_IRQ38_USART2_EN()			(NVIC_ISER1 |= 1<<(USART2_IRQ - 32))// USART2
+#define NVIC_IRQ39_USART3_EN()			(NVIC_ISER1 |= 1<<(USART3_IRQ - 32))// USART3
 
 /* Disable Interrupt Requests */
 
@@ -203,9 +271,13 @@ typedef struct
 #define NVIC_IRQ40_EXTI10_15_DI()		(NVIC_ICER1 |= 1<<8)				// EXTI10, EXTI11, EXTI12, EXTI13, EXTI14, EXTI15
 																			//  ---> PIN40 in NVIC
 
-//-*-*-*-*-*-*-*-*-*-*-*-
-//Generic Macros:
-//-*-*-*-*-*-*-*-*-*-*-*
+#define NVIC_IRQ37_USART1_DI()			(NVIC_ICER1 |= 1<<(USART1_IRQ - 32))// USART1
+#define NVIC_IRQ38_USART2_DI()			(NVIC_ICER1 |= 1<<(USART2_IRQ - 32))// USART2
+#define NVIC_IRQ39_USART3_DI()			(NVIC_ICER1 |= 1<<(USART3_IRQ - 32))// USART3
+
+/* ================================================================ */
+/* ====================== Generic Macros ========================== */
+/* ================================================================ */
 
 
 

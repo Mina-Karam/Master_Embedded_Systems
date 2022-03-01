@@ -24,7 +24,7 @@ typedef struct
 	/* uint16 Due To EXTI Lines Are 0 ---> 15 */
 	uint16_t		EXTI_InputLineNumber;	// Choose The Line Number To Use in EXTI
 
-	GPIO_TypeDef* 	GPIOx;					// GPIO Port Used For EXTI Driver
+	GPIO_Typedef_t* 	GPIOx;					// GPIO Port Used For EXTI Driver
 
 	uint16_t		GPIO_Pin;				// GPIO Pin Used For EXTI Driver
 
@@ -194,7 +194,7 @@ typedef struct
 #define EXTI_IRQ_Disable				0
 
 /* ================================================================ */
-/* ============== APIs Supported by "MCAL ..... DRIVER" =========== */
+/* ============== APIs Supported by "MCAL EXTI DRIVER" ============ */
 /* ================================================================ */
 
 void MCAL_EXTI_GPIO_Init(EXTI_PinConfig_t * EXTI_Config);
