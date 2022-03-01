@@ -31,7 +31,7 @@
 
 ## Overall progress ![image](https://progress-bar.dev/1/?scale=3&title=Terms&suffix=&width=230&color=aa00ff)
 
-[![image](https://drive.google.com/uc?export=view&id=1lUIINeO66psLGAB8vSnprwQk4NeqzAOi)](https://www.learn-in-depth.com/online-diploma/minakaram.me%40gmail.com)
+[![image](https://drive.google.com/uc?export=view&id=10y5m_ZnQ9NyiAP83m8vsVezB5YJ-HjTc)](https://www.learn-in-depth.com/online-diploma/minakaram.me%40gmail.com)
 
 ---
 
