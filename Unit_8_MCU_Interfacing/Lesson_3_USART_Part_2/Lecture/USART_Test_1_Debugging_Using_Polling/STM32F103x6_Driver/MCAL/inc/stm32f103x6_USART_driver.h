@@ -95,10 +95,10 @@ typedef struct
 #define UART_IRQ_Enable_RXNEIE		(uint32_t)(1<<5)	// Bit 5 RXNEIE: RXNE interrupt enable // Received data ready to be read
 #define UART_IRQ_Enable_PE			(uint32_t)(1<<8)	// Bit 8 PEIE: PE interrupt enable // Parity error
 
-enum Polling_mechanism
+enum Polling_Mechanism
 {
-	enable,
-	disable
+	disable,
+	enable
 };
 
 
@@ -128,8 +128,8 @@ void MCAL_UART_DeInit(USART_Typedef_t* USARTx);
 
 void MCAL_UART_GPIO_Set_Pins(USART_Typedef_t* USARTx);
 
-void MCAL_UART_SendData(USART_Typedef_t* USARTx, uint16_t* pTxBuffer, enum Polling_mechanism PollingEn);
-void MCAL_UART_ReceiveData(USART_Typedef_t* USARTx, uint16_t* pRxBuffer, enum Polling_mechanism PollingEn);
+void MCAL_UART_SendData(USART_Typedef_t* USARTx, uint16_t* pTxBuffer, enum Polling_Mechanism PollingEn);
+void MCAL_UART_ReceiveData(USART_Typedef_t* USARTx, uint16_t* pRxBuffer, enum Polling_Mechanism PollingEn);
 
 void MCAL_UART_WAIT_TC(USART_Typedef_t* USARTx);
 
