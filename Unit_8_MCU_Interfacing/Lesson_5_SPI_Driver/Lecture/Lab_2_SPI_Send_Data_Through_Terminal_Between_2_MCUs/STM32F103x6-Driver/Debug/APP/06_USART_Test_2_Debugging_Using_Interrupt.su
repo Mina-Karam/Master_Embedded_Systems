@@ -1,0 +1,3 @@
+06_USART_Test_2_Debugging_Using_Interrupt.c:24:6:USART_Test_2_Debugging_Using_Interrupt	32	static
+06_USART_Test_2_Debugging_Using_Interrupt.c:48:13:clock_init	4	static
+06_USART_Test_2_Debugging_Using_Interrupt.c:62:13:USART1_CallBack	8	static

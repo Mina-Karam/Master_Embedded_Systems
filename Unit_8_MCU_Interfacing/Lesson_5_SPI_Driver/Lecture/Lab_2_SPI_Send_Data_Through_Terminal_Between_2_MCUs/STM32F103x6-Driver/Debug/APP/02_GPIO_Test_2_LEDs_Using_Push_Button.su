@@ -1,0 +1,4 @@
+02_GPIO_Test_2_LEDs_Using_Push_Button.c:12:6:clock_init	4	static
+02_GPIO_Test_2_LEDs_Using_Push_Button.c:21:6:GPIO_init	16	static
+02_GPIO_Test_2_LEDs_Using_Push_Button.c:48:6:delay	24	static
+02_GPIO_Test_2_LEDs_Using_Push_Button.c:58:6:GPIO_Test_2_LEDs_Using_Push_Button	8	static

@@ -1,0 +1,2 @@
+Keypad.c:17:6:HAL_KEYPAD_INIT	16	static
+Keypad.c:68:6:HAL_KEYPAD_GET_KEY	16	static
