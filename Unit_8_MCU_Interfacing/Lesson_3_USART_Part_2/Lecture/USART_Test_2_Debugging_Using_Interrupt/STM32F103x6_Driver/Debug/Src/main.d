@@ -1,4 +1,0 @@
-Src/main.o: ../Src/main.c \
- D:/Courses/ES_Online_Diploma_KS/Codes/Master_Embedded_System/Unit_8_MCU_Interfacing/Lesson_3_USART_Part_2/Lecture/USART_Test_2_Debugging_Using_Interrupt/STM32F103x6_Driver/APP/inc/06_USART_Test_2_Debugging_Using_Interrupt.h
-
-D:/Courses/ES_Online_Diploma_KS/Codes/Master_Embedded_System/Unit_8_MCU_Interfacing/Lesson_3_USART_Part_2/Lecture/USART_Test_2_Debugging_Using_Interrupt/STM32F103x6_Driver/APP/inc/06_USART_Test_2_Debugging_Using_Interrupt.h:
