@@ -1,0 +1,3 @@
+03_GPIO_Test_3_Keypad_LCD_7_Segment.c:30:6:GPIO_Test_3_Keypad_LCD_7_Segment	40	static
+03_GPIO_Test_3_Keypad_LCD_7_Segment.c:97:13:clock_init	4	static
+03_GPIO_Test_3_Keypad_LCD_7_Segment.c:106:13:delay_ms	24	static
