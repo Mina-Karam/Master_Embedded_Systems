@@ -28,17 +28,17 @@ static void LCD_GPIO_INIT(void)
 {
 	// ======================= Set CTRL Switches to Output ===================
 
-	// RS_SWITCH is Output with Speed 10 MHz (push-pull) mode
+	// RS_SWITCH is Output 
 	PinConfig.GPIO_PinNumber = RS_SWITCH;
 	PinConfig.GPIO_PinMode = GPIO_MODE_OUTPUT_PP;
 	MCAL_GPIO_Init(LCD_CTRL, &PinConfig);
 
-	//RW_SWITCH is Output with Speed 10 MHz (push-pull) mode
+	//RW_SWITCH is Output 
 	PinConfig.GPIO_PinNumber = RW_SWITCH;
 	PinConfig.GPIO_PinMode = GPIO_MODE_OUTPUT_PP;
 	MCAL_GPIO_Init(LCD_CTRL, &PinConfig);
 
-	//Enable_SWITCH is Output with Speed 10 MHz (push-pull) mode
+	//Enable_SWITCH is Output 
 	PinConfig.GPIO_PinNumber = EN_SWITCH;
 	PinConfig.GPIO_PinMode = GPIO_MODE_OUTPUT_PP;
 	MCAL_GPIO_Init(LCD_CTRL, &PinConfig);
@@ -47,35 +47,35 @@ static void LCD_GPIO_INIT(void)
 
 	// SET THE NEXT 8 PINS AS INPUT
 	PinConfig.GPIO_PinNumber = GPIO_PIN_0;
-	PinConfig.GPIO_PinMode = GPIO_MODE_OUTPUT_PP;
+	PinConfig.GPIO_PinMode = GPIO_MODE_INPUT_HiZ;
 	MCAL_GPIO_Init(LCD_DATA, &PinConfig);
 
 	PinConfig.GPIO_PinNumber = GPIO_PIN_1;
-	PinConfig.GPIO_PinMode = GPIO_MODE_OUTPUT_PP;
+	PinConfig.GPIO_PinMode = GPIO_MODE_INPUT_HiZ;
 	MCAL_GPIO_Init(LCD_DATA, &PinConfig);
 
 	PinConfig.GPIO_PinNumber = GPIO_PIN_2;
-	PinConfig.GPIO_PinMode = GPIO_MODE_OUTPUT_PP;
+	PinConfig.GPIO_PinMode = GPIO_MODE_INPUT_HiZ;
 	MCAL_GPIO_Init(LCD_DATA, &PinConfig);
 
 	PinConfig.GPIO_PinNumber = GPIO_PIN_3;
-	PinConfig.GPIO_PinMode = GPIO_MODE_OUTPUT_PP;
+	PinConfig.GPIO_PinMode = GPIO_MODE_INPUT_HiZ;
 	MCAL_GPIO_Init(LCD_DATA, &PinConfig);
 
 	PinConfig.GPIO_PinNumber = GPIO_PIN_4;
-	PinConfig.GPIO_PinMode = GPIO_MODE_OUTPUT_PP;
+	PinConfig.GPIO_PinMode = GPIO_MODE_INPUT_HiZ;
 	MCAL_GPIO_Init(LCD_DATA, &PinConfig);
 
 	PinConfig.GPIO_PinNumber = GPIO_PIN_5;
-	PinConfig.GPIO_PinMode = GPIO_MODE_OUTPUT_PP;
+	PinConfig.GPIO_PinMode = GPIO_MODE_INPUT_HiZ;
 	MCAL_GPIO_Init(LCD_DATA, &PinConfig);
 
 	PinConfig.GPIO_PinNumber = GPIO_PIN_6;
-	PinConfig.GPIO_PinMode = GPIO_MODE_OUTPUT_PP;
+	PinConfig.GPIO_PinMode = GPIO_MODE_INPUT_HiZ;
 	MCAL_GPIO_Init(LCD_DATA, &PinConfig);
 
 	PinConfig.GPIO_PinNumber = GPIO_PIN_7;
-	PinConfig.GPIO_PinMode = GPIO_MODE_OUTPUT_PP;
+	PinConfig.GPIO_PinMode = GPIO_MODE_INPUT_HiZ;
 	MCAL_GPIO_Init(LCD_DATA, &PinConfig);
 
 	// Reset EN_SWITCH PIN

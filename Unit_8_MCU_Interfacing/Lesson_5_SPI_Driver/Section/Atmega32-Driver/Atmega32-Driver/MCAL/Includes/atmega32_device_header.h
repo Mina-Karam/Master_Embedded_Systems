@@ -40,6 +40,9 @@
 #define UCSRC_Base			0x20	/* USART Control and Status Register C */
 #define UBRRH_Base			0x20	/* USART Baud Rate Register High */
 
+#define SPI_Base			0x0D	/* SPI address */
+
+
 /* ================================================================ */
 /* ================= Peripheral Registers GPIO ==================== */
 /* ================================================================ */
@@ -106,22 +109,22 @@ typedef struct
 
 typedef struct{
 	
-	volatile uint8 UBRRL_;		/* USART Baud Rate Register Low, Address Offset: 0x09 */
+	vuint8_t UBRRL_;		/* USART Baud Rate Register Low, Address Offset: 0x09 */
 		
 	/*--*--*--*--*--*--*--*--*--*--*--*--*--*/
 	
 	/* USART Control and Status Register B */
 	volatile union {
-		volatile uint8 UCSRB_;
+		vuint8_t UCSRB_;
 		struct {
-			volatile uint8 TXB8_	:1;		/* Transmit Data Bit 8 */
-			volatile uint8 RXB8_ 	:1;		/* Receive Data Bit 8 */
-			volatile uint8 UCSZ2_   :1;		/* Character Size */
-			volatile uint8 TXEN_    :1;		/* Transmitter Enable */
-			volatile uint8 RXEN_    :1;		/* Receiver Enable */
-			volatile uint8 UDRIE_   :1;		/* USART Data Register Empty Interrupt Enable */
-			volatile uint8 TXCIE_   :1;		/* TX Complete Interrupt Enable */
-			volatile uint8 RXCIE_   :1;		/* RX Complete Interrupt Enable */
+			vuint8_t TXB8_	  :1;		/* Transmit Data Bit 8 */
+			vuint8_t RXB8_ 	  :1;		/* Receive Data Bit 8 */
+			vuint8_t UCSZ2_   :1;		/* Character Size */
+			vuint8_t TXEN_    :1;		/* Transmitter Enable */
+			vuint8_t RXEN_    :1;		/* Receiver Enable */
+			vuint8_t UDRIE_   :1;		/* USART Data Register Empty Interrupt Enable */
+			vuint8_t TXCIE_   :1;		/* TX Complete Interrupt Enable */
+			vuint8_t RXCIE_   :1;		/* RX Complete Interrupt Enable */
 		}bits;
 	}UCSRB_;
 	
@@ -129,27 +132,67 @@ typedef struct{
 	
 	volatile union 
 	{
-		volatile uint8 UCSRA_;		/* USART Control and Status Register A, Address Offset: 0x0B  */
+		vuint8_t UCSRA_;		/* USART Control and Status Register A, Address Offset: 0x0B  */
 		struct 
 		{
-			volatile uint8 MPCM_	:1;		/* Multi-processor Communication Mode */
-			volatile uint8 U2X_		:1;		/* Double the USART Transmission Speed */
-			volatile uint8 PE_		:1;		/* Parity Error */
-			volatile uint8 DOR_		:1;		/* Data OverRun */
-			volatile uint8 FE_		:1;		/* Frame Error */
-			volatile uint8 UDRE_	:1;		/* USART Data Register Empty */
-			volatile uint8 TXC_		:1;		/* USART Transmit Complete */
-			volatile uint8 RXC_		:1;		/* USART Receive Complete */
+			vuint8_t MPCM_	    :1;		/* Multi-processor Communication Mode */
+			vuint8_t U2X_		:1;		/* Double the USART Transmission Speed */
+			vuint8_t PE_		:1;		/* Parity Error */
+			vuint8_t DOR_		:1;		/* Data OverRun */
+			vuint8_t FE_		:1;		/* Frame Error */
+			vuint8_t UDRE_	    :1;		/* USART Data Register Empty */
+			vuint8_t TXC_		:1;		/* USART Transmit Complete */
+			vuint8_t RXC_		:1;		/* USART Receive Complete */
 		}bits;
 	}UCSRA_;	
 	
 	/*--*--*--*--*--*--*--*--*--*--*--*--*--*/
 	
-	volatile uint8 UDR_;			/* USART I/O Data Register, Address Offset: 0x0C  */
+	vuint8_t UDR_;			/* USART I/O Data Register, Address Offset: 0x0C  */
 			
+}USART_Typedef_t;
 
-}USART_typedef_t;
+/* ================================================================ */
+/* ================ Peripheral Registers SPI ==================== */
+/* ================================================================ */
 
+typedef struct
+{
+	volatile union
+	{
+		vuint8_t SPCR_;		/* SPI Control Register, Address Offset: 0x0D  */
+		struct
+		{
+			vuint8_t SPR0_	    :1;		/* SPI Clock Rate Select 0 */
+			vuint8_t SPR1_		:1;		/* SPI Clock Rate Select 1 */
+			vuint8_t CPHA_		:1;		/* Clock Phase */
+			vuint8_t CPOL_		:1;		/* Clock Polarity */
+			vuint8_t MSTR_		:1;		/* Master/Slave Select */
+			vuint8_t DORD_	    :1;		/* Data Order */
+			vuint8_t SPE_		:1;		/* SPI Enable */
+			vuint8_t SPIE_		:1;		/* SPI Interrupt Enable */
+		}bits;
+	}SPCR_;
+	
+	/*--*--*--*--*--*--*--*--*--*--*--*--*--*/
+	
+	volatile union
+	{
+		vuint8_t SPSR_;		/* SPI Status Register, Address Offset: 0x0E  */
+		struct
+		{
+			vuint8_t SPI2X_	    :1;		/* Double SPI Speed Bit */
+			vuint8_t Reversed_	:5;		/* Reversed */
+			vuint8_t WCOL_		:1;		/* Write Collision Flag */
+			vuint8_t SPIF_		:1;		/* SPI Interrupt Flag */
+		}bits;
+	}SPSR_;
+	
+	/*--*--*--*--*--*--*--*--*--*--*--*--*--*/
+	
+	vuint8_t SPDR_;		/*  SPI Data Register is a read/write register, Address Offset: 0x0F  */
+		
+}SPI_Typedef_t;
 /* ================================================================ */
 /* =================== Peripheral Instants  ======================= */
 /* ================================================================ */
@@ -162,7 +205,10 @@ typedef struct{
 #define GPIOD			((GPIO_Typedef_t*) (GPIOD_Base + IO_MAPPING_OFFSET))
 
 /*-*-*-*-*-*-* USART_Instants *-*-*-*-*-*-*/
-#define USART			((USART_typedef_t*) (USART_Base + IO_MAPPING_OFFSET))
+#define USART			((USART_Typedef_t*) (USART_Base + IO_MAPPING_OFFSET))
+
+/*-*-*-*-*-*-* SPI_Instants *-*-*-*-*-*-*/
+#define SPI				((SPI_Typedef_t*) (SPI_Base + IO_MAPPING_OFFSET))
 
 
 

@@ -17,9 +17,9 @@
 #define LCD_CTRL	GPIOB	// LCD CTRL Ports connected to PORTB Pins
 
 /* ======= LCD Control Pins ========== */
-#define RS_SWITCH GPIO_PIN_0
-#define RW_SWITCH GPIO_PIN_1
-#define EN_SWITCH GPIO_PIN_2
+#define RS_SWITCH GPIO_PIN_1
+#define RW_SWITCH GPIO_PIN_2
+#define EN_SWITCH GPIO_PIN_3
 
 /* ======= LCD MODE ========== */
 #define EIGHT_BIT_MODE

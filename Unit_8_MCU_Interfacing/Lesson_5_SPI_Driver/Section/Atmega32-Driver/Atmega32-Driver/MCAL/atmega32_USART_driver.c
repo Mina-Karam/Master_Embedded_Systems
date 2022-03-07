@@ -130,11 +130,13 @@ void MCAL_USART_Init(USART_Config_t * PinConfig)
 		{
 			UCSRC |= (1<<URSEL);		/* The URSEL must be one when writing the UCSRC */
 			UCSRC &= ~(1<<USBS);
+			break;
 		}
 		case USART_2_STOP_BIT:
 		{
 			UCSRC |=(1<<URSEL);			/* The URSEL must be one when writing the UCSRC */
 			UCSRC |=(1<<USBS);
+			break;
 		}	
 	}
 	
@@ -149,11 +151,13 @@ void MCAL_USART_Init(USART_Config_t * PinConfig)
 		{
 			UCSRC |= (1<<URSEL);		/* The URSEL must be one when writing the UCSRC */
 			UCSRC &= ~(1<<UMSEL);
+			break;
 		}
 		case USART_MODE_SYNC:
 		{
 			UCSRC |=(1<<URSEL);			/* The URSEL must be one when writing the UCSRC */
 			UCSRC |=(1<<UMSEL);
+			break;
 		}
 	}
 	
@@ -228,7 +232,7 @@ void MCAL_USART_DeInit(void)
  * @retval 		-none
  * Note			-none
  */
-void MCAL_UART_SendData(uint16 TxBuffer, enum Polling_Mechanism PollingEn)
+void MCAL_UART_SendData(uint8 TxBuffer, enum Polling_Mechanism PollingEn)
 {
 	if(PollingEn)
 	{

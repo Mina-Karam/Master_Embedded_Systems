@@ -5,17 +5,10 @@
  * Author : Mina-Karam
  */ 
 
-#include "atmega32_USART_driver.h"
-
-#include "atmega32_LCD.h"
-
+#include "atmega32_SPI_Test.h"
 
 int main(void)
 {
-    /* Replace with your application code */
-    while (1) 
-    {
-		
-    }
+   SPI_Test();
 }
 

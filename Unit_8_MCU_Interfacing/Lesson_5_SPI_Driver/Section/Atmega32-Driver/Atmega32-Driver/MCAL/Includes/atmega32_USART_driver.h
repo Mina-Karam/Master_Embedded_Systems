@@ -105,8 +105,8 @@ typedef struct{
 #define USART_IRQ_TXCIE_RXCIE			3
 
 enum Polling_Mechanism{
-	disable,
-	enable
+	USART_disable,
+	USART_enable
 };
 
 /* ================================================================ */
@@ -116,7 +116,7 @@ enum Polling_Mechanism{
 void MCAL_USART_Init(USART_Config_t * PinConfig);
 void MCAL_USART_DeInit(void);
 
-void MCAL_UART_SendData(uint16 TxBuffer, enum Polling_Mechanism PollingEn);
+void MCAL_UART_SendData(uint8 TxBuffer, enum Polling_Mechanism PollingEn);
 uint16 MCAL_UART_ReceiveData(enum Polling_Mechanism PollingEn);
 
 void MCAL_USART_SendString(uint8 *pTxBuffer);
