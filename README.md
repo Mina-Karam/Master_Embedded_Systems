@@ -20,7 +20,8 @@
 
 - [Unit 6: MCU Fundamentals](Unit_6_MCU_Fundamentals) ![image](https://progress-bar.dev/100/)
 - [Unit 7: MCU Essential Peripherals](Unit_7_MCU_Essential_Peripherals) ![image](https://progress-bar.dev/100/)
-- [Unit 8: MCU Interfacing](Unit_8_MCU_Interfacing) ![image](https://progress-bar.dev/90/)
+- [Unit 8: MCU Interfacing](Unit_8_MCU_Interfacing) ![image](https://progress-bar.dev/100/)
+- Unit 9: MCU Timers/ADC
 - More units are coming soon
 
 ---
