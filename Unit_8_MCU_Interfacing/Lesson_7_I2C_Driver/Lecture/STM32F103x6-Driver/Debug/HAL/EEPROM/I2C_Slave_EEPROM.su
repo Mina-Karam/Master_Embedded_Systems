@@ -1,0 +1,3 @@
+I2C_Slave_EEPROM.c:10:6:HAL_EEPROM_Init	48	static
+I2C_Slave_EEPROM.c:34:9:HAL_EEPROM_Write_NBytes	296	static
+I2C_Slave_EEPROM.c:53:9:HAL_EEPROM_Read_NBytes	40	static

@@ -1,0 +1,2 @@
+09_I2C_EEPROM.c:20:6:I2C_EEPROM	24	static
+09_I2C_EEPROM.c:51:13:Clock_Init	4	static

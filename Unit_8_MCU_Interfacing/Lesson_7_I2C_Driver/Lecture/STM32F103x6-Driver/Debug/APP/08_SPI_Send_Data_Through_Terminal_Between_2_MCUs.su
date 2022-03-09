@@ -1,0 +1,4 @@
+08_SPI_Send_Data_Through_Terminal_Between_2_MCUs.c:32:6:SPI_Send_Data_Through_Terminal_Between_2_MCUs	56	static
+08_SPI_Send_Data_Through_Terminal_Between_2_MCUs.c:97:13:Clock_Init	4	static
+08_SPI_Send_Data_Through_Terminal_Between_2_MCUs.c:111:13:USART1_CallBack	4	static
+08_SPI_Send_Data_Through_Terminal_Between_2_MCUs.c:130:13:SPI1_CallBack	16	static

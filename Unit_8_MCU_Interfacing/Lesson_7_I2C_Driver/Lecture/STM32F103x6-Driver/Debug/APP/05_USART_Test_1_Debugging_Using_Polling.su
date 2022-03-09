@@ -1,0 +1,2 @@
+05_USART_Test_1_Debugging_Using_Polling.c:26:6:USART_Test_1_Debugging_Using_Polling	32	static
+05_USART_Test_1_Debugging_Using_Polling.c:54:13:clock_init	4	static
