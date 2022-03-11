@@ -1,0 +1,148 @@
+
+WatchDog_Timer.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         000000aa  00000000  00000000  00000054  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000000  00800060  00800060  000000fe  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .comment      00000030  00000000  00000000  000000fe  2**0
+                  CONTENTS, READONLY
+  3 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000130  2**2
+                  CONTENTS, READONLY
+  4 .debug_aranges 00000030  00000000  00000000  0000016c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   00000631  00000000  00000000  0000019c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 00000584  00000000  00000000  000007cd  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   00000288  00000000  00000000  00000d51  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_frame  00000044  00000000  00000000  00000fdc  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_str    00000327  00000000  00000000  00001020  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_loc    00000048  00000000  00000000  00001347  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_ranges 00000020  00000000  00000000  0000138f  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+   8:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+   c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  10:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  14:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  18:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  1c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  20:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  24:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  28:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  2c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  30:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  34:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  38:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  3c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  40:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  44:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  48:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  4c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  50:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d8 e0       	ldi	r29, 0x08	; 8
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+  60:	0e 94 40 00 	call	0x80	; 0x80 <main>
+  64:	0c 94 53 00 	jmp	0xa6	; 0xa6 <_exit>
+
+00000068 <__bad_interrupt>:
+  68:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+0000006c <WDT_OFF>:
+#define LED_PIN		0
+
+
+void WDT_OFF(void)
+{
+	WDTCR = (1<<WDTOE)|(1<<WDE);
+  6c:	88 e1       	ldi	r24, 0x18	; 24
+  6e:	81 bd       	out	0x21, r24	; 33
+	WDTCR = 0x00;
+  70:	11 bc       	out	0x21, r1	; 33
+  72:	08 95       	ret
+
+00000074 <WDT_ON>:
+}
+
+void WDT_ON(void)
+{
+	WDTCR = (1 << WDP1)|(1 << WDP1)|(1 << WDE);
+  74:	8a e0       	ldi	r24, 0x0A	; 10
+  76:	81 bd       	out	0x21, r24	; 33
+	RESET_BIT(WDTCR, WDP0);
+  78:	81 b5       	in	r24, 0x21	; 33
+  7a:	8e 7f       	andi	r24, 0xFE	; 254
+  7c:	81 bd       	out	0x21, r24	; 33
+  7e:	08 95       	ret
+
+00000080 <main>:
+}
+
+int main(void)
+{
+	SET_BIT(LED_DDR, LED_PIN);
+  80:	88 9a       	sbi	0x11, 0	; 17
+	{
+		WDT_ON();
+		
+		_delay_ms(1000);
+		
+		TOG_BIT(LED_PORT, LED_PIN);
+  82:	c1 e0       	ldi	r28, 0x01	; 1
+{
+	SET_BIT(LED_DDR, LED_PIN);
+	
+	while (1)
+	{
+		WDT_ON();
+  84:	0e 94 3a 00 	call	0x74	; 0x74 <WDT_ON>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+  88:	2f e3       	ldi	r18, 0x3F	; 63
+  8a:	8d e0       	ldi	r24, 0x0D	; 13
+  8c:	93 e0       	ldi	r25, 0x03	; 3
+  8e:	21 50       	subi	r18, 0x01	; 1
+  90:	80 40       	sbci	r24, 0x00	; 0
+  92:	90 40       	sbci	r25, 0x00	; 0
+  94:	e1 f7       	brne	.-8      	; 0x8e <main+0xe>
+  96:	00 c0       	rjmp	.+0      	; 0x98 <main+0x18>
+  98:	00 00       	nop
+		
+		_delay_ms(1000);
+		
+		TOG_BIT(LED_PORT, LED_PIN);
+  9a:	82 b3       	in	r24, 0x12	; 18
+  9c:	8c 27       	eor	r24, r28
+  9e:	82 bb       	out	0x12, r24	; 18
+		
+		WDT_OFF();
+  a0:	0e 94 36 00 	call	0x6c	; 0x6c <WDT_OFF>
+  a4:	ef cf       	rjmp	.-34     	; 0x84 <main+0x4>
+
+000000a6 <_exit>:
+  a6:	f8 94       	cli
+
+000000a8 <__stop_program>:
+  a8:	ff cf       	rjmp	.-2      	; 0xa8 <__stop_program>
