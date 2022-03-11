@@ -1,6 +1,6 @@
 # Embedded Systems Online Diploma
 
-[![image](https://drive.google.com/uc?export=view&id=1Bcpl5OGMCVsqHlF52MFKXuOHNEaKHi92)](https://www.learn-in-depth.com/online-diploma/minakaram.me%40gmail.com)
+[![image](https://drive.google.com/uc?export=view&id=1Chw0F4UAXYVmvPugXGTEpzGuwZkmx3Rl)](https://www.learn-in-depth.com/online-diploma/minakaram.me%40gmail.com)
 
 ---
 
