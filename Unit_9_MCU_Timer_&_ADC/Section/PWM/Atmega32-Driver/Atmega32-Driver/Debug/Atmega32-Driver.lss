@@ -1,0 +1,459 @@
+
+Atmega32-Driver.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         000002c2  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000000  00800060  00800060  00000336  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000009  00800060  00800060  00000336  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  00000336  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000368  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 00000138  00000000  00000000  000003a4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   000014d1  00000000  00000000  000004dc  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 00000a36  00000000  00000000  000019ad  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   00000b1a  00000000  00000000  000023e3  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  00000380  00000000  00000000  00002f00  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    00000876  00000000  00000000  00003280  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    00000699  00000000  00000000  00003af6  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 000000e8  00000000  00000000  0000418f  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+   8:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+   c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  10:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  14:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  18:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  1c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  20:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  24:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  28:	0c 94 ea 00 	jmp	0x1d4	; 0x1d4 <__vector_10>
+  2c:	0c 94 c3 00 	jmp	0x186	; 0x186 <__vector_11>
+  30:	0c 94 5a 00 	jmp	0xb4	; 0xb4 <__vector_12>
+  34:	0c 94 11 01 	jmp	0x222	; 0x222 <__vector_13>
+  38:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  3c:	0c 94 38 01 	jmp	0x270	; 0x270 <__vector_15>
+  40:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  44:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  48:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  4c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  50:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d8 e0       	ldi	r29, 0x08	; 8
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_clear_bss>:
+  60:	20 e0       	ldi	r18, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	01 c0       	rjmp	.+2      	; 0x6a <.do_clear_bss_start>
+
+00000068 <.do_clear_bss_loop>:
+  68:	1d 92       	st	X+, r1
+
+0000006a <.do_clear_bss_start>:
+  6a:	a9 36       	cpi	r26, 0x69	; 105
+  6c:	b2 07       	cpc	r27, r18
+  6e:	e1 f7       	brne	.-8      	; 0x68 <.do_clear_bss_loop>
+  70:	0e 94 55 00 	call	0xaa	; 0xaa <main>
+  74:	0c 94 5f 01 	jmp	0x2be	; 0x2be <_exit>
+
+00000078 <__bad_interrupt>:
+  78:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+0000007c <PWM_Test>:
+
+#include "PWM.h"
+
+/* =========== Main Program ========== */
+void PWM_Test(void)
+{
+  7c:	cf 93       	push	r28
+  7e:	df 93       	push	r29
+  80:	00 d0       	rcall	.+0      	; 0x82 <PWM_Test+0x6>
+  82:	00 d0       	rcall	.+0      	; 0x84 <PWM_Test+0x8>
+  84:	1f 92       	push	r1
+  86:	cd b7       	in	r28, 0x3d	; 61
+  88:	de b7       	in	r29, 0x3e	; 62
+		/* Configure PIND0 as Output */
+		SET_BIT(DDRB, 3);
+  8a:	bb 9a       	sbi	0x17, 3	; 23
+		
+		/* Set timer configuration */
+		TIMER0_Config_t TIMER0_Config;
+		
+		TIMER0_Config.Timer_Mode = TIMER0_MODE_FAST_PWM_INVERTING;
+  8c:	88 e7       	ldi	r24, 0x78	; 120
+  8e:	89 83       	std	Y+1, r24	; 0x01
+		TIMER0_Config.Clock_Source = TIMER0_CLOCK_SOURCE_INTERNAL_PRESCALER_8;
+  90:	82 e0       	ldi	r24, 0x02	; 2
+  92:	8a 83       	std	Y+2, r24	; 0x02
+		TIMER0_Config.IRQ_Enable = TIMER0_IRQ_ENABLE_NONE;
+  94:	1b 82       	std	Y+3, r1	; 0x03
+		TIMER0_Config.P_IRQ_CallBack = NULL;
+  96:	1d 82       	std	Y+5, r1	; 0x05
+  98:	1c 82       	std	Y+4, r1	; 0x04
+		
+		MCAL_TIMER0_Init(&TIMER0_Config);
+  9a:	ce 01       	movw	r24, r28
+  9c:	01 96       	adiw	r24, 0x01	; 1
+  9e:	0e 94 84 00 	call	0x108	; 0x108 <MCAL_TIMER0_Init>
+		
+		MCAL_PWM_DutyCycle(100);
+  a2:	84 e6       	ldi	r24, 0x64	; 100
+  a4:	0e 94 b8 00 	call	0x170	; 0x170 <MCAL_PWM_DutyCycle>
+  a8:	ff cf       	rjmp	.-2      	; 0xa8 <PWM_Test+0x2c>
+
+000000aa <main>:
+
+#include "PWM.h"
+
+int main(void)
+{
+	 PWM_Test();
+  aa:	0e 94 3e 00 	call	0x7c	; 0x7c <PWM_Test>
+	 return 0;
+}
+  ae:	80 e0       	ldi	r24, 0x00	; 0
+  b0:	90 e0       	ldi	r25, 0x00	; 0
+  b2:	08 95       	ret
+
+000000b4 <__vector_12>:
+/* ================================================================ */
+/* ================= IRQ Function Definitions ===================== */
+/* ================================================================ */
+
+ISR(SPI_STC_vect)
+{
+  b4:	1f 92       	push	r1
+  b6:	0f 92       	push	r0
+  b8:	0f b6       	in	r0, 0x3f	; 63
+  ba:	0f 92       	push	r0
+  bc:	11 24       	eor	r1, r1
+  be:	2f 93       	push	r18
+  c0:	3f 93       	push	r19
+  c2:	4f 93       	push	r20
+  c4:	5f 93       	push	r21
+  c6:	6f 93       	push	r22
+  c8:	7f 93       	push	r23
+  ca:	8f 93       	push	r24
+  cc:	9f 93       	push	r25
+  ce:	af 93       	push	r26
+  d0:	bf 93       	push	r27
+  d2:	ef 93       	push	r30
+  d4:	ff 93       	push	r31
+	G_SPI_Config->P_IRQ_CallBack();
+  d6:	e0 91 60 00 	lds	r30, 0x0060	; 0x800060 <__DATA_REGION_ORIGIN__>
+  da:	f0 91 61 00 	lds	r31, 0x0061	; 0x800061 <__DATA_REGION_ORIGIN__+0x1>
+  de:	00 84       	ldd	r0, Z+8	; 0x08
+  e0:	f1 85       	ldd	r31, Z+9	; 0x09
+  e2:	e0 2d       	mov	r30, r0
+  e4:	09 95       	icall
+  e6:	ff 91       	pop	r31
+  e8:	ef 91       	pop	r30
+  ea:	bf 91       	pop	r27
+  ec:	af 91       	pop	r26
+  ee:	9f 91       	pop	r25
+  f0:	8f 91       	pop	r24
+  f2:	7f 91       	pop	r23
+  f4:	6f 91       	pop	r22
+  f6:	5f 91       	pop	r21
+  f8:	4f 91       	pop	r20
+  fa:	3f 91       	pop	r19
+  fc:	2f 91       	pop	r18
+  fe:	0f 90       	pop	r0
+ 100:	0f be       	out	0x3f, r0	; 63
+ 102:	0f 90       	pop	r0
+ 104:	1f 90       	pop	r1
+ 106:	18 95       	reti
+
+00000108 <MCAL_TIMER0_Init>:
+ * Note 			- None
+ *
+ */
+void MCAL_TIMER0_GetCompareValue(uint8* TicksNumber)
+{
+	*TicksNumber = TCNT0;
+ 108:	cf 93       	push	r28
+ 10a:	df 93       	push	r29
+ 10c:	ec 01       	movw	r28, r24
+ 10e:	85 e0       	ldi	r24, 0x05	; 5
+ 110:	fe 01       	movw	r30, r28
+ 112:	a4 e6       	ldi	r26, 0x64	; 100
+ 114:	b0 e0       	ldi	r27, 0x00	; 0
+ 116:	01 90       	ld	r0, Z+
+ 118:	0d 92       	st	X+, r0
+ 11a:	8a 95       	dec	r24
+ 11c:	e1 f7       	brne	.-8      	; 0x116 <MCAL_TIMER0_Init+0xe>
+ 11e:	93 b7       	in	r25, 0x33	; 51
+ 120:	88 81       	ld	r24, Y
+ 122:	89 2b       	or	r24, r25
+ 124:	83 bf       	out	0x33, r24	; 51
+ 126:	88 81       	ld	r24, Y
+ 128:	8f 7e       	andi	r24, 0xEF	; 239
+ 12a:	88 36       	cpi	r24, 0x68	; 104
+ 12c:	09 f4       	brne	.+2      	; 0x130 <MCAL_TIMER0_Init+0x28>
+ 12e:	bb 9a       	sbi	0x17, 3	; 23
+ 130:	93 b7       	in	r25, 0x33	; 51
+ 132:	89 81       	ldd	r24, Y+1	; 0x01
+ 134:	89 2b       	or	r24, r25
+ 136:	83 bf       	out	0x33, r24	; 51
+ 138:	89 81       	ldd	r24, Y+1	; 0x01
+ 13a:	86 50       	subi	r24, 0x06	; 6
+ 13c:	82 30       	cpi	r24, 0x02	; 2
+ 13e:	08 f4       	brcc	.+2      	; 0x142 <MCAL_TIMER0_Init+0x3a>
+ 140:	b8 98       	cbi	0x17, 0	; 23
+ 142:	99 b7       	in	r25, 0x39	; 57
+ 144:	8a 81       	ldd	r24, Y+2	; 0x02
+ 146:	89 2b       	or	r24, r25
+ 148:	89 bf       	out	0x39, r24	; 57
+ 14a:	8a 81       	ldd	r24, Y+2	; 0x02
+ 14c:	88 23       	and	r24, r24
+ 14e:	21 f0       	breq	.+8      	; 0x158 <MCAL_TIMER0_Init+0x50>
+ 150:	8f b7       	in	r24, 0x3f	; 63
+ 152:	80 68       	ori	r24, 0x80	; 128
+ 154:	8f bf       	out	0x3f, r24	; 63
+ 156:	03 c0       	rjmp	.+6      	; 0x15e <MCAL_TIMER0_Init+0x56>
+ 158:	8f b7       	in	r24, 0x3f	; 63
+ 15a:	8f 77       	andi	r24, 0x7F	; 127
+ 15c:	8f bf       	out	0x3f, r24	; 63
+ 15e:	8b 81       	ldd	r24, Y+3	; 0x03
+ 160:	9c 81       	ldd	r25, Y+4	; 0x04
+ 162:	90 93 63 00 	sts	0x0063, r25	; 0x800063 <GP_IRQ_CallBack+0x1>
+ 166:	80 93 62 00 	sts	0x0062, r24	; 0x800062 <GP_IRQ_CallBack>
+ 16a:	df 91       	pop	r29
+ 16c:	cf 91       	pop	r28
+ 16e:	08 95       	ret
+
+00000170 <MCAL_PWM_DutyCycle>:
+ * @retval 			- None
+ * Note 			- Supported for Fast PWM Mode only & count value must not exceed 255
+ */
+void MCAL_PWM_DutyCycle(uint8 Duty_Cycle)
+{
+	if(G_TIMER0_Config.Timer_Mode == TIMER0_MODE_FAST_PWM_NONINVERTING)
+ 170:	90 91 64 00 	lds	r25, 0x0064	; 0x800064 <G_TIMER0_Config>
+ 174:	98 36       	cpi	r25, 0x68	; 104
+ 176:	11 f4       	brne	.+4      	; 0x17c <MCAL_PWM_DutyCycle+0xc>
+	{
+		OCR0 = Duty_Cycle;
+ 178:	8c bf       	out	0x3c, r24	; 60
+ 17a:	08 95       	ret
+	}
+	else if(G_TIMER0_Config.Timer_Mode == TIMER0_MODE_FAST_PWM_INVERTING)
+ 17c:	98 37       	cpi	r25, 0x78	; 120
+ 17e:	11 f4       	brne	.+4      	; 0x184 <MCAL_PWM_DutyCycle+0x14>
+	{
+		OCR0 = (uint8)(255 - Duty_Cycle);
+ 180:	80 95       	com	r24
+ 182:	8c bf       	out	0x3c, r24	; 60
+ 184:	08 95       	ret
+
+00000186 <__vector_11>:
+/* ================ ISR Functions Definations ===================== */
+/* ================================================================ */
+
+/* OVERFLOW ISR */
+ISR(TIMER0_OVF_vect)
+{
+ 186:	1f 92       	push	r1
+ 188:	0f 92       	push	r0
+ 18a:	0f b6       	in	r0, 0x3f	; 63
+ 18c:	0f 92       	push	r0
+ 18e:	11 24       	eor	r1, r1
+ 190:	2f 93       	push	r18
+ 192:	3f 93       	push	r19
+ 194:	4f 93       	push	r20
+ 196:	5f 93       	push	r21
+ 198:	6f 93       	push	r22
+ 19a:	7f 93       	push	r23
+ 19c:	8f 93       	push	r24
+ 19e:	9f 93       	push	r25
+ 1a0:	af 93       	push	r26
+ 1a2:	bf 93       	push	r27
+ 1a4:	ef 93       	push	r30
+ 1a6:	ff 93       	push	r31
+	GP_IRQ_CallBack();
+ 1a8:	e0 91 62 00 	lds	r30, 0x0062	; 0x800062 <GP_IRQ_CallBack>
+ 1ac:	f0 91 63 00 	lds	r31, 0x0063	; 0x800063 <GP_IRQ_CallBack+0x1>
+ 1b0:	09 95       	icall
+}
+ 1b2:	ff 91       	pop	r31
+ 1b4:	ef 91       	pop	r30
+ 1b6:	bf 91       	pop	r27
+ 1b8:	af 91       	pop	r26
+ 1ba:	9f 91       	pop	r25
+ 1bc:	8f 91       	pop	r24
+ 1be:	7f 91       	pop	r23
+ 1c0:	6f 91       	pop	r22
+ 1c2:	5f 91       	pop	r21
+ 1c4:	4f 91       	pop	r20
+ 1c6:	3f 91       	pop	r19
+ 1c8:	2f 91       	pop	r18
+ 1ca:	0f 90       	pop	r0
+ 1cc:	0f be       	out	0x3f, r0	; 63
+ 1ce:	0f 90       	pop	r0
+ 1d0:	1f 90       	pop	r1
+ 1d2:	18 95       	reti
+
+000001d4 <__vector_10>:
+
+/* COMPARE MATCH ISR */
+ISR(TIMER0_COMP_vect)
+{
+ 1d4:	1f 92       	push	r1
+ 1d6:	0f 92       	push	r0
+ 1d8:	0f b6       	in	r0, 0x3f	; 63
+ 1da:	0f 92       	push	r0
+ 1dc:	11 24       	eor	r1, r1
+ 1de:	2f 93       	push	r18
+ 1e0:	3f 93       	push	r19
+ 1e2:	4f 93       	push	r20
+ 1e4:	5f 93       	push	r21
+ 1e6:	6f 93       	push	r22
+ 1e8:	7f 93       	push	r23
+ 1ea:	8f 93       	push	r24
+ 1ec:	9f 93       	push	r25
+ 1ee:	af 93       	push	r26
+ 1f0:	bf 93       	push	r27
+ 1f2:	ef 93       	push	r30
+ 1f4:	ff 93       	push	r31
+	GP_IRQ_CallBack();
+ 1f6:	e0 91 62 00 	lds	r30, 0x0062	; 0x800062 <GP_IRQ_CallBack>
+ 1fa:	f0 91 63 00 	lds	r31, 0x0063	; 0x800063 <GP_IRQ_CallBack+0x1>
+ 1fe:	09 95       	icall
+}
+ 200:	ff 91       	pop	r31
+ 202:	ef 91       	pop	r30
+ 204:	bf 91       	pop	r27
+ 206:	af 91       	pop	r26
+ 208:	9f 91       	pop	r25
+ 20a:	8f 91       	pop	r24
+ 20c:	7f 91       	pop	r23
+ 20e:	6f 91       	pop	r22
+ 210:	5f 91       	pop	r21
+ 212:	4f 91       	pop	r20
+ 214:	3f 91       	pop	r19
+ 216:	2f 91       	pop	r18
+ 218:	0f 90       	pop	r0
+ 21a:	0f be       	out	0x3f, r0	; 63
+ 21c:	0f 90       	pop	r0
+ 21e:	1f 90       	pop	r1
+ 220:	18 95       	reti
+
+00000222 <__vector_13>:
+		}
+	}
+}
+
+ISR(USART_RXC_vect)
+{
+ 222:	1f 92       	push	r1
+ 224:	0f 92       	push	r0
+ 226:	0f b6       	in	r0, 0x3f	; 63
+ 228:	0f 92       	push	r0
+ 22a:	11 24       	eor	r1, r1
+ 22c:	2f 93       	push	r18
+ 22e:	3f 93       	push	r19
+ 230:	4f 93       	push	r20
+ 232:	5f 93       	push	r21
+ 234:	6f 93       	push	r22
+ 236:	7f 93       	push	r23
+ 238:	8f 93       	push	r24
+ 23a:	9f 93       	push	r25
+ 23c:	af 93       	push	r26
+ 23e:	bf 93       	push	r27
+ 240:	ef 93       	push	r30
+ 242:	ff 93       	push	r31
+	GP_IRQ_CallBack();
+ 244:	e0 91 62 00 	lds	r30, 0x0062	; 0x800062 <GP_IRQ_CallBack>
+ 248:	f0 91 63 00 	lds	r31, 0x0063	; 0x800063 <GP_IRQ_CallBack+0x1>
+ 24c:	09 95       	icall
+}
+ 24e:	ff 91       	pop	r31
+ 250:	ef 91       	pop	r30
+ 252:	bf 91       	pop	r27
+ 254:	af 91       	pop	r26
+ 256:	9f 91       	pop	r25
+ 258:	8f 91       	pop	r24
+ 25a:	7f 91       	pop	r23
+ 25c:	6f 91       	pop	r22
+ 25e:	5f 91       	pop	r21
+ 260:	4f 91       	pop	r20
+ 262:	3f 91       	pop	r19
+ 264:	2f 91       	pop	r18
+ 266:	0f 90       	pop	r0
+ 268:	0f be       	out	0x3f, r0	; 63
+ 26a:	0f 90       	pop	r0
+ 26c:	1f 90       	pop	r1
+ 26e:	18 95       	reti
+
+00000270 <__vector_15>:
+
+ISR(USART_TXC_vect)
+{
+ 270:	1f 92       	push	r1
+ 272:	0f 92       	push	r0
+ 274:	0f b6       	in	r0, 0x3f	; 63
+ 276:	0f 92       	push	r0
+ 278:	11 24       	eor	r1, r1
+ 27a:	2f 93       	push	r18
+ 27c:	3f 93       	push	r19
+ 27e:	4f 93       	push	r20
+ 280:	5f 93       	push	r21
+ 282:	6f 93       	push	r22
+ 284:	7f 93       	push	r23
+ 286:	8f 93       	push	r24
+ 288:	9f 93       	push	r25
+ 28a:	af 93       	push	r26
+ 28c:	bf 93       	push	r27
+ 28e:	ef 93       	push	r30
+ 290:	ff 93       	push	r31
+	GP_IRQ_CallBack();
+ 292:	e0 91 62 00 	lds	r30, 0x0062	; 0x800062 <GP_IRQ_CallBack>
+ 296:	f0 91 63 00 	lds	r31, 0x0063	; 0x800063 <GP_IRQ_CallBack+0x1>
+ 29a:	09 95       	icall
+ 29c:	ff 91       	pop	r31
+ 29e:	ef 91       	pop	r30
+ 2a0:	bf 91       	pop	r27
+ 2a2:	af 91       	pop	r26
+ 2a4:	9f 91       	pop	r25
+ 2a6:	8f 91       	pop	r24
+ 2a8:	7f 91       	pop	r23
+ 2aa:	6f 91       	pop	r22
+ 2ac:	5f 91       	pop	r21
+ 2ae:	4f 91       	pop	r20
+ 2b0:	3f 91       	pop	r19
+ 2b2:	2f 91       	pop	r18
+ 2b4:	0f 90       	pop	r0
+ 2b6:	0f be       	out	0x3f, r0	; 63
+ 2b8:	0f 90       	pop	r0
+ 2ba:	1f 90       	pop	r1
+ 2bc:	18 95       	reti
+
+000002be <_exit>:
+ 2be:	f8 94       	cli
+
+000002c0 <__stop_program>:
+ 2c0:	ff cf       	rjmp	.-2      	; 0x2c0 <__stop_program>
