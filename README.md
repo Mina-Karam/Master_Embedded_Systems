@@ -1,6 +1,6 @@
 # Embedded Systems Online Diploma
 
-[![image](https://drive.google.com/uc?export=view&id=1Chw0F4UAXYVmvPugXGTEpzGuwZkmx3Rl)](https://www.learn-in-depth.com/online-diploma/minakaram.me%40gmail.com)
+[![image](https://github.com/Mina-Karam/Master_Embedded_Systems/blob/master/Top%201.png)](https://www.learn-in-depth.com/online-diploma/minakaram.me%40gmail.com)
 
 ---
 
