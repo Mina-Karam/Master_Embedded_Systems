@@ -43,6 +43,6 @@
 
 ---
 
-## My Progress Profile: [Click Here](https://www.learn-in-depth.com/online-diploma/minakaram.me%40gmail.com)
+## My Progress Profile: [Click Here](https://www.learn-in-depth-store.com/certificate/minakaram.me%40gmail.com)
 
 ---
