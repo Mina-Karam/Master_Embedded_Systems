@@ -16,7 +16,7 @@
 
 ---
 
-### Second Term ![image](https://progress-bar.dev/100/?title=Done&color=ff00ff)
+### Second Term ![image](https://progress-bar.dev/100/?title=Done)
 
 - [Unit 6: MCU Fundamentals](Unit_6_MCU_Fundamentals) ![image](https://progress-bar.dev/100/)
 - [Unit 7: MCU Essential Peripherals](Unit_7_MCU_Essential_Peripherals) ![image](https://progress-bar.dev/100/)
@@ -39,7 +39,7 @@
 
 ## Overall progress ![image](https://progress-bar.dev/2/?scale=3&title=Terms&suffix=&width=230&color=aa00ff)
 
-[![image](https://github.com/Mina-Karam/Master_Embedded_Systems/blob/master/Certification.png)](https://www.learn-in-depth.com/online-diploma/minakaram.me%40gmail.com)
+[![image](https://github.com/Mina-Karam/Master_Embedded_Systems/blob/master/Certification.png)](https://www.learn-in-depth-store.com/certificate/minakaram.me%40gmail.com)
 
 ---
 
